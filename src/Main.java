@@ -32,6 +32,7 @@ public class Main {
         System.out.println(fac1.getTicketTotal());
         System.out.println(fac1.getTicketDate());
 
+        System.out.println("prueba");
 
     }//closes main
 
