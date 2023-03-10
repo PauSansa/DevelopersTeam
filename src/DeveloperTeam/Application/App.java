@@ -36,7 +36,7 @@ public class App {
         System.out.println("4.-List Stock (with quantity)");
         System.out.println("5.-Create a Ticket (Ticket Menu)");
 
-        return AskParameter.readByte("Insert Your Option");
+        return AskParameter.askByte("Insert Your Option: ");
     }
 
     public void addItem(){
@@ -85,7 +85,7 @@ public class App {
         System.out.println("4.-Save Ticket");
         System.out.println("5.-Go Back");
 
-        return AskParameter.readByte("Insert Your Option");
+        return AskParameter.askByte("Insert Your Option: ");
     }
 
     public void addItemT(){
