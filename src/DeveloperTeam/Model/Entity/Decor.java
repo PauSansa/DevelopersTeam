@@ -1,5 +1,7 @@
 package DeveloperTeam.Model.Entity;
 
+import DeveloperTeam.Application.AskParameter;
+
 public class Decor implements Article{
 
     private int id;
@@ -12,6 +14,13 @@ public class Decor implements Article{
         this.name = name;
         this.material = material;
         this.price = price;
+    }
+
+    public Decor(){
+        this.id = AskParameter.readInt("Introduce the id");
+        this.name = AskParameter.readString("Introduce the name");
+        this.material = AskParameter.readString("Introduce the Material");
+        this.price = AskParameter.readFloat("Introduce the Price");
     }
 
 

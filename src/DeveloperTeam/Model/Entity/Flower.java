@@ -1,5 +1,7 @@
 package DeveloperTeam.Model.Entity;
 
+import DeveloperTeam.Application.AskParameter;
+
 public class Flower implements Article{
 
     private int id;
@@ -12,6 +14,13 @@ public class Flower implements Article{
         this.name = name;
         this.colour = colour;
         this.price = price;
+    }
+
+    public Flower(){
+        this.id = AskParameter.readInt("Introduce the id");
+        this.name = AskParameter.readString("Introduce the name");
+        this.colour = AskParameter.readString("Introduce the Colour");
+        this.price = AskParameter.readFloat("Introduce the Price");
     }
 
     public int getId() {
