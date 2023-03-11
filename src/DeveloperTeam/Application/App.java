@@ -14,6 +14,7 @@ public class App {
 
         while(loop){
             byte opt = getOptMain();
+            System.out.println("\n");
 
             switch(opt){
                 case 1 -> addItem();
