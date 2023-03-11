@@ -1,7 +1,8 @@
 # Florist Shop - Catalog and Purchase Ticket Management
 
-<center>
+
 This is a group project made by:
+
 
 [![Pau Sansa's LinkedIn](https://img.shields.io/badge/linkedin-Pau%20Sansa-blue)](https://www.linkedin.com/in/pausansa/)
 [![Anderson Kevin's LinkedIn](https://img.shields.io/badge/linkedin-Anderson%20Kevin-blue)](#)
@@ -9,7 +10,7 @@ This is a group project made by:
 
 
 during our specialization in Backend with Java at IT ACADEMY.
-</center>
+
 ## Description
 
 This project is an application for managing the catalog of various florist shops, allowing users to create purchase tickets to place orders.
