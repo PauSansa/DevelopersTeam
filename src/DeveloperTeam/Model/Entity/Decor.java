@@ -17,10 +17,10 @@ public class Decor implements Article{
     }
 
     public Decor(){
-        this.id = AskParameter.readInt("Introduce the id");
-        this.name = AskParameter.readString("Introduce the name");
-        this.material = AskParameter.readString("Introduce the Material");
-        this.price = AskParameter.readFloat("Introduce the Price");
+        this.id = AskParameter.askInteger("Introduce the id");
+        this.name = AskParameter.askString("Introduce the name");
+        this.material = AskParameter.askString("Introduce the Material");
+        this.price = AskParameter.askFloat("Introduce the Price");
     }
 
 

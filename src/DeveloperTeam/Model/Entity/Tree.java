@@ -18,10 +18,10 @@ public class Tree implements Article {
     }
 
     public Tree(){
-        this.id = AskParameter.readInt("Introduce the id");
-        this.name = AskParameter.readString("Introduce the name");
-        this.height = AskParameter.readFloat("Introduce the Height");
-        this.price = AskParameter.readFloat("Introduce the Price");
+        this.id = AskParameter.askInteger("Introduce the id");
+        this.name = AskParameter.askString("Introduce the name");
+        this.height = AskParameter.askFloat("Introduce the Height");
+        this.price = AskParameter.askFloat("Introduce the Price");
     }
 
     public int getId() {

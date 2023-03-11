@@ -1,36 +1,84 @@
 package DeveloperTeam.Application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //TODO implementar metodos
 public class AskParameter {
-    public static Scanner sc = new Scanner(System.in);
+    // the  System.out.println(messages) depend of question;
+        public static Scanner myScannerObj = new Scanner(System.in);
 
-    public static int readInt(String msg){
-        System.out.println(msg + "\n");
-        sc.nextLine();
-        return 0;
+    public static int askInteger(String message){
+
+        int outputParameter=0;
+        boolean continua = true;
+
+        do{
+            try{
+                System.out.println("\r"+message);
+                outputParameter= myScannerObj.nextInt();
+                System.out.println("entered Integer is correct!: "+ outputParameter);
+                continua= false;
+            } catch(InputMismatchException e) {
+                System.out.println("Entered value isn't a Integer, try again! ");
+            }
+
+            myScannerObj.nextLine();
+
+        } while(continua);
+
+        return outputParameter;
+
     }
 
-    public static String readString(String msg){
-        System.out.println(msg + "\n");
-        sc.nextLine();
-
-        return null;
+    public static String askString(String message){
+        System.out.println("\r"+message);
+        return myScannerObj.nextLine();
     }
 
-    public static float readFloat(String msg){
-        System.out.println(msg + "\n");
-        sc.nextLine();
+    public static float askFloat(String message){
 
-        return 0f;
+        float outputParameter=0f;
+        boolean continua=true;
+
+        do{
+            try{
+
+                System.out.println("\r"+message);
+
+                outputParameter = myScannerObj.nextFloat();
+                outputParameter = (float) (Math.round(outputParameter * 100.0) / 100.0); // round 2 decimals
+                System.out.println("entered Float is correct!: " + outputParameter);
+                continua= false;
+
+            } catch(InputMismatchException e) {
+                System.out.println("Entered value isn't a Float, try again! ");
+            }
+            myScannerObj.nextLine();
+        } while(continua);
+
+        return outputParameter;
     }
 
-    public static byte readByte(String msg){
-        System.out.println(msg + "\n");
-        sc.nextLine();
+    public static byte askByte(String message){
 
-        return 0;
+
+        byte outputParameter = 0;
+        boolean continua  = true;
+
+        do {
+            try {
+                System.out.println("\r"+message);
+                outputParameter = myScannerObj.nextByte();
+                System.out.println("entered Byte is correct!: " + outputParameter);
+                continua=false;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Entered value isn't a byte, try again! ");
+            }
+            myScannerObj.nextLine();
+        } while (continua);
+        return outputParameter;
     }
 
 }
