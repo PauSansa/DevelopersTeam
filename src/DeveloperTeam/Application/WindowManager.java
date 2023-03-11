@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 public class WindowManager {
-    public static File getDir(){
+    public static File getTicketDir(){
         String path = "";
 
         JFileChooser fileChooser = new JFileChooser();
