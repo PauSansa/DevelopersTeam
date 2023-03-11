@@ -4,8 +4,8 @@
 This is a group project made by:
 
 
-[![Pau Sansa's LinkedIn](https://img.shields.io/badge/linkedin-Pau%20Sansa-blue)](https://www.linkedin.com/in/pausansa/)
-[![Anderson Kevin's LinkedIn](https://img.shields.io/badge/linkedin-Anderson%20Kevin-blue)](#)
+[![Pau Sansa's LinkedIn](https://img.shields.io/badge/LinkedIn-Pau%20Sansa-blue)](https://www.linkedin.com/in/pausansa/)
+[![Anderson Kevin's LinkedIn](https://img.shields.io/badge/LinkedIn-Anderson%20Kevin-blue)](#)
 [![Marçal Fargas's LinkedIn](https://img.shields.io/badge/LinkedIn-Mar%C3%A7al%20Fargas-blue)](#)
 
 
