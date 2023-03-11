@@ -8,6 +8,6 @@ public class MainTestingPau {
         App app2 = new App();
         App app3 = new App();
 
-        System.out.println("break");
+        app.init();
     }
 }
