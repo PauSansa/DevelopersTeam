@@ -5,6 +5,9 @@ import DeveloperTeam.Application.App;
 public class MainTestingPau {
     public static void main(String[] args) {
         App app = new App();
-        app.init();
+        App app2 = new App();
+        App app3 = new App();
+
+        System.out.println("break");
     }
 }
