@@ -1,8 +1,15 @@
 package DeveloperTeam.Application;
 
-public class App {
-    public App(){
+import DeveloperTeam.Model.Entity.FlowerShop;
 
+public class App {
+    FlowerShop flowerShop;
+    static int appQuantity = 0;
+
+    public App(){
+        appQuantity++;
+        String name = AskParameter.askString("Enter the name of the FlowerShop:");
+        flowerShop = new FlowerShop(appQuantity,name);
     }
 
     public void init(){
@@ -14,6 +21,7 @@ public class App {
 
         while(loop){
             byte opt = getOptMain();
+            System.out.println("\n");
 
             switch(opt){
                 case 1 -> addItem();
@@ -45,17 +53,14 @@ public class App {
 
     public void deleteItem(){
         System.out.println("Delete Item");
-
     }
 
     public void listAll(){
         System.out.println("List Items");
-
     }
 
     public void listStock(){
         System.out.println("List Stock");
-
     }
 
     public void loopTicket(){
@@ -94,17 +99,14 @@ public class App {
 
     public void deleteItemT(){
         System.out.println("Remove Item T");
-
     }
 
     public void listTicket(){
         System.out.println("List Item T");
-
     }
 
     public void saveTicket(){
         System.out.println("Save Item T");
-
     }
 
 

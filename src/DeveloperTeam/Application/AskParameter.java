@@ -3,7 +3,7 @@ package DeveloperTeam.Application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//TODO implementar metodos
+//TODO quitar mensaje de confirmacion
 public class AskParameter {
     // the  System.out.println(messages) depend of question;
         public static Scanner myScannerObj = new Scanner(System.in);
