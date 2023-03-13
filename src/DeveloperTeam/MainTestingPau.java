@@ -8,6 +8,7 @@ import DeveloperTeam.Model.Interfaces.ArticleFactory;
 import DeveloperTeam.Model.Repository.Repository;
 import DeveloperTeam.Model.Repository.TxtRepository;
 
+//TODO: Implementar repo txt
 public class MainTestingPau {
     public static void main(String[] args) {
         ArticleFactory factory = new ArticleFactory();
