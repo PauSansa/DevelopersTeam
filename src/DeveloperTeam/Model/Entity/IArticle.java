@@ -1,6 +1,6 @@
 package DeveloperTeam.Model.Entity;
 
-public interface Article {
+public interface IArticle {
 
     public float getPrice();
 

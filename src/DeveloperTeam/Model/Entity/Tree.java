@@ -2,7 +2,7 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
-public class Tree implements Article {
+public class Tree implements IArticle {
 
     private int id;
     private String name;

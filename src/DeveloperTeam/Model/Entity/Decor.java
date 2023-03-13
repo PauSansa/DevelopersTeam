@@ -2,7 +2,7 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
-public class Decor implements Article{
+public class Decor implements IArticle {
 
     private int id;
     private String name;
