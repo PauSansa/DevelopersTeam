@@ -4,9 +4,9 @@
 This is a group project made by:
 
 
-[![Anderson Kevin's LinkedIn](https://img.shields.io/badge/LinkedIn-Anderson%20Kevin-blue)](https://www.linkedin.com/in/anderson-zolis-120b96124)
-[![Marçal Fargas's LinkedIn](https://img.shields.io/badge/LinkedIn-Mar%C3%A7al%20Fargas-blue)](https://www.linkedin.com/in/mar%C3%A7al-fargas-1b6986254)
 [![Pau Sansa's LinkedIn](https://img.shields.io/badge/LinkedIn-Pau%20Sansa-blue)](https://www.linkedin.com/in/pausansa/)
+[![Anderson Kevin's LinkedIn](https://img.shields.io/badge/LinkedIn-Anderson%20Kevin-blue)](#)
+[![Marçal Fargas's LinkedIn](https://img.shields.io/badge/LinkedIn-Mar%C3%A7al%20Fargas-blue)](#)
 
 
 during our specialization in Backend with Java at IT ACADEMY.
