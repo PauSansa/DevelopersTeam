@@ -11,7 +11,7 @@ public class Main {
 
         Tree tree = new Tree(1,"pi",150,50f);
 
-        Decor decor = new Decor(1,"font","fusta",200f);
+        Decor decor = new Decor(1,"font",true,200f);
 
         //INSERTING ARTICLES IN STOCK
         myFS.getStock().add(flower);
