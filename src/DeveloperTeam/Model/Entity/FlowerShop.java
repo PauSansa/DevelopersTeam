@@ -30,8 +30,8 @@ public class FlowerShop {
 
     public float getStockTotal() {
 
-        for (IArticle article:stock) {
-            stockTotal += article.getPrice();
+        for (IArticle IArticle :stock) {
+            stockTotal += IArticle.getPrice();
         }
 
         return stockTotal;

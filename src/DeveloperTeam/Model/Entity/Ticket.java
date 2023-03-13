@@ -13,7 +13,7 @@ public class Ticket {
     private float ticketTotal;
 
 
-    private ArrayList<IArticle> articles = new ArrayList<IArticle>();
+    private ArrayList<IArticle> IArticles = new ArrayList<IArticle>();
 
 
     public Ticket(String nameClient, String addressClient) {
@@ -59,8 +59,8 @@ public class Ticket {
     }
 
     public float getTicketTotal() {
-        for (IArticle article:articles) {
-            ticketTotal += article.getPrice();
+        for (IArticle IArticle : IArticles) {
+            ticketTotal += IArticle.getPrice();
         }
         return ticketTotal;
     }
@@ -70,11 +70,11 @@ public class Ticket {
     }
 
     public ArrayList<IArticle> getArticles() {
-        return articles;
+        return IArticles;
     }
 
-    public void setArticles(ArrayList<IArticle> articles) {
-        this.articles = articles;
+    public void setArticles(ArrayList<IArticle> IArticles) {
+        this.IArticles = IArticles;
     }
 
 
@@ -86,7 +86,7 @@ public class Ticket {
                 ", addressClient='" + addressClient + '\'' +
                 ", ticketDate=" + ticketDate +
                 ", ticketTotal=" + ticketTotal +
-                ", articles=" + articles +
+                ", IArticles=" + IArticles +
                 '}';
     }
 }//closes class
