@@ -2,7 +2,7 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
-public class Tree implements Article {
+public class Tree implements IArticle {
 
     private int id;
     private String name;
@@ -17,8 +17,8 @@ public class Tree implements Article {
         this.price = price;
     }
 
-    public Tree(){
-        this.id = AskParameter.askInteger("Introduce the id");
+    public Tree(int id){
+        this.id = id;
         this.name = AskParameter.askString("Introduce the name");
         this.height = AskParameter.askFloat("Introduce the Height");
         this.price = AskParameter.askFloat("Introduce the Price");

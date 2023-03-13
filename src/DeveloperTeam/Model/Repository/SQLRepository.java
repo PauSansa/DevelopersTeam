@@ -1,18 +1,18 @@
 package DeveloperTeam.Model.Repository;
 
-import DeveloperTeam.Model.Entity.Article;
+import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
 import java.util.List;
 
 public class SQLRepository implements Repository{
     @Override
-    public void addStockItem(Article article) {
+    public void addStockItem(IArticle IArticle) {
 
     }
 
     @Override
-    public List<Article> getAll(Article article) {
+    public List<IArticle> getAll(IArticle IArticle) {
         return null;
     }
 

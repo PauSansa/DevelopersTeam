@@ -10,7 +10,7 @@ public class FlowerShop {
     private float ticketsTotal;
 
 
-    private ArrayList<Article> stock = new ArrayList<>();
+    private ArrayList<IArticle> stock = new ArrayList<>();
     private ArrayList<Ticket> tickets = new ArrayList<>();
 
 
@@ -20,18 +20,18 @@ public class FlowerShop {
         this.name = name;
     }
 
-    public ArrayList<Article> getStock() {
+    public ArrayList<IArticle> getStock() {
         return stock;
     }
 
-    public void setStock(ArrayList<Article> stock) {
+    public void setStock(ArrayList<IArticle> stock) {
         this.stock = stock;
     }
 
     public float getStockTotal() {
 
-        for (Article article:stock) {
-            stockTotal += article.getPrice();
+        for (IArticle IArticle :stock) {
+            stockTotal += IArticle.getPrice();
         }
 
         return stockTotal;

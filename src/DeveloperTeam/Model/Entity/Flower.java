@@ -2,7 +2,7 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
-public class Flower implements Article{
+public class Flower implements IArticle {
 
     private int id;
     private String name;
@@ -16,8 +16,8 @@ public class Flower implements Article{
         this.price = price;
     }
 
-    public Flower(){
-        this.id = AskParameter.askInteger("Introduce the id");
+    public Flower(int id){
+        this.id = id;
         this.name = AskParameter.askString("Introduce the name");
         this.colour = AskParameter.askString("Introduce the Colour");
         this.price = AskParameter.askFloat("Introduce the Price");
