@@ -17,8 +17,8 @@ public class Tree implements IArticle {
         this.price = price;
     }
 
-    public Tree(){
-        this.id = AskParameter.askInteger("Introduce the id");
+    public Tree(int id){
+        this.id = id;
         this.name = AskParameter.askString("Introduce the name");
         this.height = AskParameter.askFloat("Introduce the Height");
         this.price = AskParameter.askFloat("Introduce the Price");

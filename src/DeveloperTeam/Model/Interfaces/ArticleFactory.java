@@ -7,13 +7,15 @@ import DeveloperTeam.Model.Entity.Tree;
 
 public class ArticleFactory {
 
+    private static int nArticles = 0;
+
     public IArticle getArticle(String country) {
         if(country=="tree"){
-            return new Tree();
+            return new Tree(nArticles++);
         } else if (country=="flower") {
-            return new Flower();
+            return new Flower(nArticles++);
         }else if (country=="decor") {
-            return new Decor();
+            return new Decor(nArticles++);
         }
         return null;
     }

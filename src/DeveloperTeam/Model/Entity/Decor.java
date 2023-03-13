@@ -16,8 +16,8 @@ public class Decor implements IArticle {
         this.price = price;
     }
 
-    public Decor(){
-        this.id = AskParameter.askInteger("Introduce the id");
+    public Decor(int id){
+        this.id = id;
         this.name = AskParameter.askString("Introduce the name");
         this.material = AskParameter.askString("Introduce the Material");
         this.price = AskParameter.askFloat("Introduce the Price");
