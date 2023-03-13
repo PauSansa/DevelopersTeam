@@ -3,7 +3,6 @@ package DeveloperTeam.Application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//TODO quitar mensaje de confirmacion
 public class AskParameter {
     // the  System.out.println(messages) depend of question;
         public static Scanner myScannerObj = new Scanner(System.in);
@@ -17,7 +16,6 @@ public class AskParameter {
             try{
                 System.out.println("\r"+message);
                 outputParameter= myScannerObj.nextInt();
-                System.out.println("entered Integer is correct!: "+ outputParameter);
                 continua= false;
             } catch(InputMismatchException e) {
                 System.out.println("Entered value isn't a Integer, try again! ");
@@ -33,7 +31,7 @@ public class AskParameter {
 
     public static String askString(String message){
         System.out.println("\r"+message);
-        return myScannerObj.nextLine();
+        return myScannerObj.nextLine().toLowerCase();
     }
 
     public static float askFloat(String message){
@@ -48,7 +46,6 @@ public class AskParameter {
 
                 outputParameter = myScannerObj.nextFloat();
                 outputParameter = (float) (Math.round(outputParameter * 100.0) / 100.0); // round 2 decimals
-                System.out.println("entered Float is correct!: " + outputParameter);
                 continua= false;
 
             } catch(InputMismatchException e) {
@@ -70,7 +67,6 @@ public class AskParameter {
             try {
                 System.out.println("\r"+message);
                 outputParameter = myScannerObj.nextByte();
-                System.out.println("entered Byte is correct!: " + outputParameter);
                 continua=false;
 
             } catch (InputMismatchException e) {
@@ -78,6 +74,28 @@ public class AskParameter {
             }
             myScannerObj.nextLine();
         } while (continua);
+        return outputParameter;
+    }
+
+    public static boolean askBoolean(String message){
+
+
+        boolean outputParameter = false;
+        boolean continua  = true;
+
+        do {
+            try {
+                System.out.println("\r"+message);
+                outputParameter = myScannerObj.nextBoolean();
+                continua=false;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Entered value isn't a booolean, try again! ");
+            }
+            myScannerObj.nextLine();
+
+        } while (continua);
+
         return outputParameter;
     }
 

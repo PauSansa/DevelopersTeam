@@ -6,10 +6,10 @@ public class Decor implements IArticle {
 
     private int id;
     private String name;
-    private String material; //podria ser int o boolean
+    private boolean material;
     private float price;
 
-    public Decor(int id, String name, String material, float price) {
+    public Decor(int id, String name, boolean material, float price) {
         this.id = id;
         this.name = name;
         this.material = material;
@@ -19,7 +19,7 @@ public class Decor implements IArticle {
     public Decor(int id){
         this.id = id;
         this.name = AskParameter.askString("Introduce the name");
-        this.material = AskParameter.askString("Introduce the Material");
+        this.material = AskParameter.askBoolean("Introduce the Material: " +"\n" +"(True) for wood and (false) for plastic");
         this.price = AskParameter.askFloat("Introduce the Price");
     }
 
@@ -40,11 +40,11 @@ public class Decor implements IArticle {
         this.name = name;
     }
 
-    public String getMaterial() {
+    public boolean getMaterial() {
         return material;
     }
 
-    public void setMaterial(String material) {
+    public void setMaterial(boolean material) {
         this.material = material;
     }
 
