@@ -14,7 +14,7 @@ public class DevelopersService {
 
     public DevelopersService(byte persistence){
         switch(persistence){
-            case 0-> data = new TxtRepository();
+            default -> data = new TxtRepository();
             case 1 -> data = new SQLRepository();
             case 2 -> data = new MongoRepository();
         }
