@@ -19,7 +19,7 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public void removeStockItem(Article article) {
+    public void removeStockItem(int idArticle) {
 
     }
 

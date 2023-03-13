@@ -8,7 +8,7 @@ import java.util.List;
 public interface Repository {
     void addStockItem(Article article);
     List<Article> getAll(Article article);
-    void removeStockItem(Article article);
+    void removeStockItem(int idArticle);
     List<Ticket> getAllTickets();
 
 }

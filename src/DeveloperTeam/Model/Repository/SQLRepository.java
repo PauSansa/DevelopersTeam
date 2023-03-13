@@ -17,7 +17,7 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public void removeStockItem(Article article) {
+    public void removeStockItem(int idArticle) {
 
     }
 
