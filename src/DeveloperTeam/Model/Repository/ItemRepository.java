@@ -1,19 +1,19 @@
 package DeveloperTeam.Model.Repository;
 
-import DeveloperTeam.Model.Entity.Article;
+import DeveloperTeam.Model.Entity.IArticle;
 
 //TODO Implementar Metodos
 public class ItemRepository {
 
-    public void addArticle(Article article){
+    public void addArticle(IArticle article){
 
     }
 
-    public void removeArticle(Article article){
+    public void removeArticle(IArticle article){
 
     }
 
-    public Article getArticle(){
+    public IArticle getArticle(){
         return null;
     }
 }

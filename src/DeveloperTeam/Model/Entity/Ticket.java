@@ -2,7 +2,6 @@ package DeveloperTeam.Model.Entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Ticket {
 
@@ -14,7 +13,7 @@ public class Ticket {
     private float ticketTotal;
 
 
-    private ArrayList<Article> articles = new ArrayList<Article>();
+    private ArrayList<IArticle> articles = new ArrayList<IArticle>();
 
 
     public Ticket(String nameClient, String addressClient) {
@@ -60,7 +59,7 @@ public class Ticket {
     }
 
     public float getTicketTotal() {
-        for (Article article:articles) {
+        for (IArticle article:articles) {
             ticketTotal += article.getPrice();
         }
         return ticketTotal;
@@ -70,11 +69,11 @@ public class Ticket {
         this.ticketTotal = ticketTotal;
     }
 
-    public ArrayList<Article> getArticles() {
+    public ArrayList<IArticle> getArticles() {
         return articles;
     }
 
-    public void setArticles(ArrayList<Article> articles) {
+    public void setArticles(ArrayList<IArticle> articles) {
         this.articles = articles;
     }
 

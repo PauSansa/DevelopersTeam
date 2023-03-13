@@ -2,7 +2,7 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
-public class Flower implements Article{
+public class Flower implements IArticle {
 
     private int id;
     private String name;
