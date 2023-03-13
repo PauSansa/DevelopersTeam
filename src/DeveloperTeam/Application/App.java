@@ -1,15 +1,26 @@
 package DeveloperTeam.Application;
 
 import DeveloperTeam.Model.Entity.FlowerShop;
+import DeveloperTeam.Model.Service.DevelopersService;
 
 public class App {
     FlowerShop flowerShop;
     static int appQuantity = 0;
 
+    DevelopersService service;
+
     public App(){
         appQuantity++;
         String name = AskParameter.askString("Enter the name of the FlowerShop:");
         flowerShop = new FlowerShop(appQuantity,name);
+
+
+        System.out.println("0.-TXT");
+        System.out.println("1.-mySQL");
+        System.out.println("2.-mongoDB");
+        byte persistence = AskParameter.askByte("Select Persistence 0-2 (Default 0)");
+
+        service = new DevelopersService(persistence);
     }
 
     public void init(){
