@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO implmementar metodos
@@ -29,9 +30,12 @@ public class TxtRepository implements Repository{
         ticketFile = new File(path+"/tickets.txt");
         stockFile = new File(path + "/stock.txt");
         try{
-            stockWriter = new FileWriter(stockFile);
-            ticketWriter = new FileWriter(ticketFile);
-        } catch(IOException e){
+            stockWriter = new FileWriter(stockFile,true);
+            ticketWriter = new FileWriter(ticketFile,true);
+
+            stockReader = new FileReader(stockFile);
+            ticketReader = new FileReader(ticketFile);
+        } catch(Exception e){
             e.printStackTrace();
         }
 
@@ -48,7 +52,7 @@ public class TxtRepository implements Repository{
             stockWriter.write(art.getName()+",");
             stockWriter.write(art.getCaracteristic()+",");
             stockWriter.write(art.getPrice()+"");
-            stockWriter.write("}");
+            stockWriter.write("}\n");
             stockWriter.flush();
         }catch(IOException e){
             e.printStackTrace();
@@ -56,7 +60,7 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll(IArticle IArticle) {
+    public List<IArticle> getAll() {
         return null;
     }
 
