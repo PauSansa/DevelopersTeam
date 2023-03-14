@@ -25,4 +25,9 @@ public class SQLRepository implements Repository{
     public List<Ticket> getAllTickets() {
         return null;
     }
+
+    @Override
+    public boolean exists(IArticle art) {
+        return false;
+    }
 }

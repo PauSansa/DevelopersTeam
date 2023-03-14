@@ -5,10 +5,7 @@ import DeveloperTeam.Application.WindowManager;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +16,8 @@ public class TxtRepository implements Repository{
     private File stockFile;
     private FileWriter stockWriter;
     private FileWriter ticketWriter;
-    private FileReader stockReader;
-    private FileReader ticketReader;
+    private BufferedReader stockReader;
+    private BufferedReader ticketReader;
 
     public TxtRepository(){
         this.path = WindowManager.getPath();
@@ -33,8 +30,8 @@ public class TxtRepository implements Repository{
             stockWriter = new FileWriter(stockFile,true);
             ticketWriter = new FileWriter(ticketFile,true);
 
-            stockReader = new FileReader(stockFile);
-            ticketReader = new FileReader(ticketFile);
+            stockReader = new BufferedReader(new FileReader(stockFile));
+            ticketReader = new BufferedReader(new FileReader(ticketFile));
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -60,8 +57,11 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll() {
-        return null;
+    public List<IArticle> getAll() throws Exception {
+        String line= "";
+        while(line=stockReader.readLine()!=null){
+
+        }
     }
 
     @Override
@@ -72,5 +72,10 @@ public class TxtRepository implements Repository{
     @Override
     public List<Ticket> getAllTickets() {
         return null;
+    }
+
+    @Override
+    public boolean exists(IArticle art) {
+        return false;
     }
 }

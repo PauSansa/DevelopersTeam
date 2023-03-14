@@ -6,9 +6,10 @@ import DeveloperTeam.Model.Entity.Ticket;
 import java.util.List;
 
 public interface Repository {
-    void addStockItem(IArticle art);
-    List<IArticle> getAll();
-    void removeStockItem(int idArticle);
-    List<Ticket> getAllTickets();
+    void addStockItem(IArticle art) throws Exception;
+    List<IArticle> getAll() throws Exception;
+    void removeStockItem(int idArticle) throws Exception;
+    List<Ticket> getAllTickets() throws Exception;
+    boolean exists(IArticle art) throws Exception;
 
 }
