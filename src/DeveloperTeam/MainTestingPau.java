@@ -12,9 +12,11 @@ public class MainTestingPau {
         TxtRepository repo = new TxtRepository();
 
         IArticle article1 = new Tree(1,"Pino","26",25.10f);
+        IArticle article2 = new Tree(1,"Pino","26",25.10f);
 
 
         repo.addStockItem(article1);
+
 
     }
 }

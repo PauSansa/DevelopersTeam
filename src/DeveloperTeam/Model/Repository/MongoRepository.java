@@ -12,7 +12,7 @@ public class MongoRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll(IArticle IArticle) {
+    public List<IArticle> getAll() {
         return null;
     }
 
