@@ -39,6 +39,16 @@ public class Flower implements IArticle {
         this.name = name;
     }
 
+    @Override
+    public String getCaracteristic() {
+        return colour;
+    }
+
+    @Override
+    public void setCaracteristic(String caracteristic) {
+        this.colour = caracteristic;
+    }
+
     public String getColour() {
         return colour;
     }

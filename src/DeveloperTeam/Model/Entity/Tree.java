@@ -6,11 +6,11 @@ public class Tree implements IArticle {
 
     private int id;
     private String name;
-    private float height;
+    private String height;
     private float price;
 
 
-    public Tree(int id, String name, float height, float price) {
+    public Tree(int id, String name, String height, float price) {
         this.id = id;
         this.name = name;
         this.height = height;
@@ -20,7 +20,7 @@ public class Tree implements IArticle {
     public Tree(int id){
         this.id = id;
         this.name = AskParameter.askString("Introduce the name");
-        this.height = AskParameter.askFloat("Introduce the Height");
+        this.height = AskParameter.askString("Introduce the height");
         this.price = AskParameter.askFloat("Introduce the Price");
     }
 
@@ -40,11 +40,21 @@ public class Tree implements IArticle {
         this.name = name;
     }
 
-    public float getHeight() {
+    @Override
+    public String getCaracteristic() {
         return height;
     }
 
-    public void setHeight(float height) {
+    @Override
+    public void setCaracteristic(String caracteristic) {
+        this.height = caracteristic;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
         this.height = height;
     }
 
