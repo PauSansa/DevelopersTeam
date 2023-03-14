@@ -16,11 +16,16 @@ public class DevelopersService {
     Repository data;
 
     public DevelopersService(byte persistence){
-        switch(persistence){
-            default -> data = new TxtRepository();
-            case 1 -> data = new SQLRepository();
-            case 2 -> data = new MongoRepository();
+        try{
+            switch(persistence){
+                default -> data = new TxtRepository();
+                case 1 -> data = new SQLRepository();
+                case 2 -> data = new MongoRepository();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 
     //returns 1 if created and 0 if not
