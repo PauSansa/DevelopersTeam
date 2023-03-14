@@ -3,6 +3,7 @@ package DeveloperTeam.Application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//TODO Crear clase askMaterial que unicamente accepte madera o plastico (se puede hacer con un tolower case o pidiendo un byte i en funcion del byte returnear 'madera' o 'plastico')
 public class AskParameter {
     // the  System.out.println(messages) depend of question;
         public static Scanner myScannerObj = new Scanner(System.in);

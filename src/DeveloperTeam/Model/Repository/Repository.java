@@ -6,8 +6,8 @@ import DeveloperTeam.Model.Entity.Ticket;
 import java.util.List;
 
 public interface Repository {
-    void addStockItem(IArticle IArticle);
-    List<IArticle> getAll(IArticle IArticle);
+    void addStockItem(IArticle art);
+    List<IArticle> getAll(IArticle art);
     void removeStockItem(int idArticle);
     List<Ticket> getAllTickets();
 

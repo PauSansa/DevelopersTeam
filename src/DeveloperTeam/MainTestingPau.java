@@ -1,21 +1,20 @@
 package DeveloperTeam;
 
-import DeveloperTeam.Application.App;
-import DeveloperTeam.Application.WindowManager;
+
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Tree;
-import DeveloperTeam.Model.Interfaces.ArticleFactory;
-import DeveloperTeam.Model.Repository.Repository;
+
 import DeveloperTeam.Model.Repository.TxtRepository;
 
+//TODO: Implementar repo txt
 public class MainTestingPau {
     public static void main(String[] args) {
-        ArticleFactory factory = new ArticleFactory();
+        TxtRepository repo = new TxtRepository();
 
-        IArticle article1 = factory.getArticle("tree");
-        IArticle article2 = factory.getArticle("decor");
-        IArticle article3 = factory.getArticle("flower");
+        IArticle article1 = new Tree(1,"Pino","26",25.10f);
 
-        System.out.println("Breakpoint");
+
+        repo.addStockItem(article1);
+
     }
 }
