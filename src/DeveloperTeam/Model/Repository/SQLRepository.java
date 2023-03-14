@@ -27,7 +27,7 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public boolean exists(IArticle art) {
+    public boolean exists(int idArticle) {
         return false;
     }
 }

@@ -15,11 +15,10 @@ import java.util.List;
 public class MainTestingPau {
     public static void main(String[] args) {
         TxtRepository repo = new TxtRepository();
-
-        List<IArticle> articles = new ArrayList<>();
+        boolean exists = false;
 
         try {
-            articles.addAll(repo.getAll());
+            exists = repo.exists(23);
         }catch(Exception e){
             e.printStackTrace();
         }
