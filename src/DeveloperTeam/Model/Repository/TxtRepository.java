@@ -2,8 +2,7 @@ package DeveloperTeam.Model.Repository;
 
 
 import DeveloperTeam.Application.WindowManager;
-import DeveloperTeam.Model.Entity.IArticle;
-import DeveloperTeam.Model.Entity.Ticket;
+import DeveloperTeam.Model.Entity.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -58,10 +57,23 @@ public class TxtRepository implements Repository{
 
     @Override
     public List<IArticle> getAll() throws Exception {
-        String line= "";
-        while(line=stockReader.readLine()!=null){
+        List<IArticle> articles = new ArrayList<>();
 
+        String line= "";
+        while((line=stockReader.readLine())!=null){
+            String[] tokens = line.replace("{","").replace("}","").split(",");
+            int id = Integer.parseInt(tokens[1]);
+            String name = tokens[2];
+            String caract = tokens[3];
+            Float price = Float.parseFloat(tokens[4]);
+            switch (tokens[0]){
+                case "Tree" -> articles.add(new Tree(id,name,caract,price));
+                case "Decor" -> articles.add(new Decor(id,name,caract,price));
+                case "Flower" -> articles.add(new Flower(id,name,caract,price));
+            }
         }
+
+        return articles;
     }
 
     @Override
