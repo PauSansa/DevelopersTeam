@@ -15,7 +15,7 @@ public class WindowManager {
         if(result==JFileChooser.APPROVE_OPTION){
             path = fileChooser.getSelectedFile().getAbsolutePath();
         } else{
-            System.out.println("Process has been canceled");
+            System.out.println("Process has been canceled, current directory will be used");
         }
         return path;
     }

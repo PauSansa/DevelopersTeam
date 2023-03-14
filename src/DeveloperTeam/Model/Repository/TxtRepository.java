@@ -2,13 +2,10 @@ package DeveloperTeam.Model.Repository;
 
 
 import DeveloperTeam.Application.WindowManager;
-import DeveloperTeam.Model.Entity.IArticle;
-import DeveloperTeam.Model.Entity.Ticket;
+import DeveloperTeam.Model.Entity.*;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO implmementar metodos
@@ -18,8 +15,8 @@ public class TxtRepository implements Repository{
     private File stockFile;
     private FileWriter stockWriter;
     private FileWriter ticketWriter;
-    private FileReader stockReader;
-    private FileReader ticketReader;
+    private BufferedReader stockReader;
+    private BufferedReader ticketReader;
 
     public TxtRepository(){
         this.path = WindowManager.getPath();
@@ -29,9 +26,12 @@ public class TxtRepository implements Repository{
         ticketFile = new File(path+"/tickets.txt");
         stockFile = new File(path + "/stock.txt");
         try{
-            stockWriter = new FileWriter(stockFile);
-            ticketWriter = new FileWriter(ticketFile);
-        } catch(IOException e){
+            stockWriter = new FileWriter(stockFile,true);
+            ticketWriter = new FileWriter(ticketFile,true);
+
+            stockReader = new BufferedReader(new FileReader(stockFile));
+            ticketReader = new BufferedReader(new FileReader(ticketFile));
+        } catch(Exception e){
             e.printStackTrace();
         }
 
@@ -48,7 +48,7 @@ public class TxtRepository implements Repository{
             stockWriter.write(art.getName()+",");
             stockWriter.write(art.getCaracteristic()+",");
             stockWriter.write(art.getPrice()+"");
-            stockWriter.write("}");
+            stockWriter.write("}\n");
             stockWriter.flush();
         }catch(IOException e){
             e.printStackTrace();
@@ -56,17 +56,64 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll(IArticle IArticle) {
-        return null;
+    public List<IArticle> getAll() throws Exception {
+        List<IArticle> articles = new ArrayList<>();
+
+        String line= "";
+        while((line=stockReader.readLine())!=null){
+            String[] tokens = line.replace("{","").replace("}","").split(",");
+            int id = Integer.parseInt(tokens[1]);
+            String name = tokens[2];
+            String caract = tokens[3];
+            Float price = Float.parseFloat(tokens[4]);
+            switch (tokens[0]){
+                case "Tree" -> articles.add(new Tree(id,name,caract,price));
+                case "Decor" -> articles.add(new Decor(id,name,caract,price));
+                case "Flower" -> articles.add(new Flower(id,name,caract,price));
+            }
+        }
+
+        return articles;
     }
 
-    @Override
-    public void removeStockItem(int idArticle) {
 
+
+    @Override
+    public void removeStockItem(int idArticle) throws Exception{
+        List<String> lines = new ArrayList<>();
+
+        String line;
+        while ((line = stockReader.readLine()) != null) {
+            if (line.contains("," + idArticle + ",")) {
+                continue;
+            }
+            lines.add(line);
+        }
+
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(stockFile))) {
+            for (String l : lines) {
+                writer.println(l);
+            }
+        }
     }
 
     @Override
     public List<Ticket> getAllTickets() {
         return null;
+    }
+
+    @Override
+    public boolean exists(int idArticle) throws Exception {
+        String line;
+        boolean found = false;
+
+        while((line=stockReader.readLine())!=null && !found ){
+            if (line.contains("," + idArticle + ",")) {
+                found = true;
+            }
+        }
+
+        return found;
     }
 }

@@ -12,7 +12,7 @@ public class MongoRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll(IArticle IArticle) {
+    public List<IArticle> getAll() {
         return null;
     }
 
@@ -25,4 +25,11 @@ public class MongoRepository implements Repository{
     public List<Ticket> getAllTickets() {
         return null;
     }
+
+    @Override
+    public boolean exists(int idArticle) {
+        return false;
+    }
+
+
 }

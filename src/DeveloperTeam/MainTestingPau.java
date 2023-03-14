@@ -1,20 +1,28 @@
 package DeveloperTeam;
 
 
+import DeveloperTeam.Model.Entity.Decor;
+import DeveloperTeam.Model.Entity.Flower;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Tree;
 
 import DeveloperTeam.Model.Repository.TxtRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //TODO: Implementar repo txt
 public class MainTestingPau {
     public static void main(String[] args) {
         TxtRepository repo = new TxtRepository();
+        boolean exists = false;
 
-        IArticle article1 = new Tree(1,"Pino","26",25.10f);
+        try {
+            exists = repo.exists(23);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
-
-        repo.addStockItem(article1);
-
+        System.out.println("break");
     }
 }

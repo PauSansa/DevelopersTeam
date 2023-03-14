@@ -27,7 +27,12 @@ public class DevelopersService {
     public void createArticle(){
         String kind = AskParameter.askString("What do you wanna add? tree/flower/decor");
         IArticle article = factory.getArticle(kind);
-        data.addStockItem(article);
+        try{
+            data.addStockItem(article);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -6,13 +6,15 @@ import DeveloperTeam.Model.Entity.Ticket;
 import java.util.List;
 
 public class SQLRepository implements Repository{
+
+
     @Override
     public void addStockItem(IArticle IArticle) {
 
     }
 
     @Override
-    public List<IArticle> getAll(IArticle IArticle) {
+    public List<IArticle> getAll() {
         return null;
     }
 
@@ -24,5 +26,10 @@ public class SQLRepository implements Repository{
     @Override
     public List<Ticket> getAllTickets() {
         return null;
+    }
+
+    @Override
+    public boolean exists(int idArticle) {
+        return false;
     }
 }
