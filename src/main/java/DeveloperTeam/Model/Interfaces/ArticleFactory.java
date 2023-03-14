@@ -9,14 +9,14 @@ public class ArticleFactory {
 
     private static int nArticles = 0;
 
-    public IArticle getArticle(String country) {
-        if(country=="tree"){
-            return new Tree(nArticles++);
-        } else if (country=="flower") {
-            return new Flower(nArticles++);
-        }else if (country=="decor") {
-            return new Decor(nArticles++);
+    public IArticle getArticle(Byte type) {
+
+        switch (type){
+            case 1 -> {return new Tree(nArticles++);}
+            case 2 -> {return new Flower(nArticles++);}
+            case 3 -> {return new Decor(nArticles++);}
         }
+
         return null;
     }
 

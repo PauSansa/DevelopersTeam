@@ -7,6 +7,7 @@ import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Tree;
 
 import DeveloperTeam.Model.Repository.TxtRepository;
+import DeveloperTeam.Model.Service.DevelopersService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +15,10 @@ import java.util.List;
 //TODO: Implementar repo txt
 public class MainTestingPau {
     public static void main(String[] args) {
-        TxtRepository repo = new TxtRepository();
-        boolean exists = false;
 
-        try {
-            exists = repo.exists(23);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        DevelopersService myService = new DevelopersService((byte)0);
 
-        System.out.println("break");
+        myService.createArticle();
+
     }
 }
