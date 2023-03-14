@@ -25,7 +25,7 @@ public class DevelopersService {
 
     //returns 1 if created and 0 if not
     public void createArticle(){
-        String kind = AskParameter.askString("What do you wanna add? tree/flower/decor");
+        byte kind = AskParameter.askByte("What do you wanna add?\n1-tree\n2-flower\n3-decor");
         IArticle article = factory.getArticle(kind);
         try{
             data.addStockItem(article);
