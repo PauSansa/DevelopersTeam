@@ -76,9 +76,26 @@ public class TxtRepository implements Repository{
         return articles;
     }
 
-    @Override
-    public void removeStockItem(int idArticle) {
 
+
+    @Override
+    public void removeStockItem(int idArticle) throws Exception{
+        List<String> lines = new ArrayList<>();
+
+        String line;
+        while ((line = stockReader.readLine()) != null) {
+            if (line.contains("," + idArticle + ",")) {
+                continue;
+            }
+            lines.add(line);
+        }
+
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(stockFile))) {
+            for (String l : lines) {
+                writer.println(l);
+            }
+        }
     }
 
     @Override
@@ -87,7 +104,16 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public boolean exists(IArticle art) {
-        return false;
+    public boolean exists(int idArticle) throws Exception {
+        String line;
+        boolean found = false;
+
+        while((line=stockReader.readLine())!=null && !found ){
+            if (line.contains("," + idArticle + ",")) {
+                found = true;
+            }
+        }
+
+        return found;
     }
 }

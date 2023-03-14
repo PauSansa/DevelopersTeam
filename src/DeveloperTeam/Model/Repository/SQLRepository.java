@@ -6,6 +6,8 @@ import DeveloperTeam.Model.Entity.Ticket;
 import java.util.List;
 
 public class SQLRepository implements Repository{
+
+
     @Override
     public void addStockItem(IArticle IArticle) {
 
@@ -27,7 +29,7 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public boolean exists(IArticle art) {
+    public boolean exists(int idArticle) {
         return false;
     }
 }
