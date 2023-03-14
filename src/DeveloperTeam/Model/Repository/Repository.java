@@ -10,5 +10,6 @@ public interface Repository {
     List<IArticle> getAll();
     void removeStockItem(int idArticle);
     List<Ticket> getAllTickets();
+    boolean exists(IArticle art);
 
 }
