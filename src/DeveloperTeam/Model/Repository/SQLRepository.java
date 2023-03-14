@@ -6,6 +6,8 @@ import DeveloperTeam.Model.Entity.Ticket;
 import java.util.List;
 
 public class SQLRepository implements Repository{
+
+
     @Override
     public void addStockItem(IArticle IArticle) {
 
