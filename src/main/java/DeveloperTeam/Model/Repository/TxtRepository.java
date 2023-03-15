@@ -32,6 +32,9 @@ public class TxtRepository implements Repository{
 
             stockReader = new BufferedReader(new FileReader(stockFile));
             ticketReader = new BufferedReader(new FileReader(ticketFile));
+
+            stockReader.mark(1000);
+            ticketReader.mark(1000);
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -60,8 +63,6 @@ public class TxtRepository implements Repository{
     public List<IArticle> getAll() throws Exception {
         List<IArticle> articles = new ArrayList<>();
 
-        stockReader.reset();
-
         String line= "";
         while((line=stockReader.readLine())!=null){
             String[] tokens = line.replace("{","").replace("}","").split(",");
@@ -75,6 +76,7 @@ public class TxtRepository implements Repository{
                 case "Flower" -> articles.add(new Flower(id,name,caract,price));
             }
         }
+        stockReader.reset();
 
         return articles;
     }

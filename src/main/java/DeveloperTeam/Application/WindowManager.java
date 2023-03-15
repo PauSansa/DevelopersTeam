@@ -1,11 +1,6 @@
 package DeveloperTeam.Application;
 
-import java.awt.*;
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.*;
-import java.io.*;
 public class WindowManager {
     public static String getPath(){
         String path = "";
