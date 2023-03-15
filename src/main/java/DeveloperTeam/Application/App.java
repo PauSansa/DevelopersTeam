@@ -2,6 +2,10 @@ package DeveloperTeam.Application;
 
 import DeveloperTeam.Model.Builders.TicketBuilder;
 import DeveloperTeam.Model.Entity.FlowerShop;
+import DeveloperTeam.Model.Repository.MongoRepository;
+import DeveloperTeam.Model.Repository.Repository;
+import DeveloperTeam.Model.Repository.SQLRepository;
+import DeveloperTeam.Model.Repository.TxtRepository;
 import DeveloperTeam.Model.Service.DevelopersService;
 
 import java.security.Provider;
@@ -22,10 +26,21 @@ public class App {
         System.out.println("0.-TXT");
         System.out.println("1.-mySQL");
         System.out.println("2.-mongoDB");
-        byte persistence = AskParameter.askByte("Select Persistence 0-2 (Default 0)");
+        byte opt = AskParameter.askByte("Select Persistence 0-2 (Default 0)");
+        Repository repo = null;
+        try{
+            switch(opt){
+                default -> repo = new TxtRepository();
+                case 1 -> repo = new SQLRepository();
+                case 2 -> repo = new MongoRepository();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
-        service = new DevelopersService(persistence);
-        ticketBuilder = new TicketBuilder(persistence);
+
+        service = new DevelopersService(repo);
+        ticketBuilder = new TicketBuilder(service);
     }
 
     public void init(){

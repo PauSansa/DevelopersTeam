@@ -4,6 +4,7 @@ package DeveloperTeam.Model.Repository;
 import DeveloperTeam.Application.WindowManager;
 import DeveloperTeam.Model.Entity.*;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,9 @@ public class TxtRepository implements Repository{
 
             stockReader = new BufferedReader(new FileReader(stockFile));
             ticketReader = new BufferedReader(new FileReader(ticketFile));
+
+            stockReader.mark(1000);
+            ticketReader.mark(1000);
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -72,6 +76,7 @@ public class TxtRepository implements Repository{
                 case "Flower" -> articles.add(new Flower(id,name,caract,price));
             }
         }
+        stockReader.reset();
 
         return articles;
     }
