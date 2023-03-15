@@ -1,13 +1,17 @@
 package DeveloperTeam.Application;
 
+import DeveloperTeam.Model.Builders.TicketBuilder;
 import DeveloperTeam.Model.Entity.FlowerShop;
 import DeveloperTeam.Model.Service.DevelopersService;
+
+import java.security.Provider;
 
 public class App {
     FlowerShop flowerShop;
     static int appQuantity = 0;
 
     DevelopersService service;
+    TicketBuilder ticketBuilder;
 
     public App(){
         appQuantity++;
@@ -21,6 +25,7 @@ public class App {
         byte persistence = AskParameter.askByte("Select Persistence 0-2 (Default 0)");
 
         service = new DevelopersService(persistence);
+        ticketBuilder = new TicketBuilder(persistence);
     }
 
     public void init(){
@@ -35,13 +40,12 @@ public class App {
             System.out.println("\n");
 
             switch(opt){
-                case 1 -> addItem();
-                case 2 -> deleteItem();
-                case 3 -> listAll();
-                case 4 -> listStock();
+                case 1 -> service.createArticle();
+                case 2 -> service.removeArticle();
+                case 3 -> service.listAllArticles();
+                case 4 -> service.listAllStock();
                 case 5 -> {
-                    loop = false;
-                    loopTicket();
+                    ticketBuilder.build();
                 }
             }
 
@@ -58,67 +62,7 @@ public class App {
         return AskParameter.askByte("Insert Your Option: ");
     }
 
-    public void addItem(){
-        System.out.println("Add Item");
-    }
 
-    public void deleteItem(){
-        System.out.println("Delete Item");
-    }
-
-    public void listAll(){
-        System.out.println("List Items");
-    }
-
-    public void listStock(){
-        System.out.println("List Stock");
-    }
-
-    public void loopTicket(){
-        boolean loop = true;
-        listAll();
-        while(loop){
-            byte opt = getOptTicket();
-
-            switch(opt){
-                case 1 -> addItemT();
-                case 2 -> deleteItemT();
-                case 3 -> listTicket();
-                case 4 -> saveTicket();
-                case 5 -> {
-                    loop = false;
-                    loopMain();
-                }
-            }
-        }
-    }
-
-    public byte getOptTicket(){
-        System.out.println(" #·#·# TICKET MENU #·#·# ");
-        System.out.println("1.-Add Ticket Item");
-        System.out.println("2.-Delete Ticket Item");
-        System.out.println("3.-See Current Ticket");
-        System.out.println("4.-Save Ticket");
-        System.out.println("5.-Go Back");
-
-        return AskParameter.askByte("Insert Your Option: ");
-    }
-
-    public void addItemT(){
-        System.out.println("Add Item T");
-    }
-
-    public void deleteItemT(){
-        System.out.println("Remove Item T");
-    }
-
-    public void listTicket(){
-        System.out.println("List Item T");
-    }
-
-    public void saveTicket(){
-        System.out.println("Save Item T");
-    }
 
 
 

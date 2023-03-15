@@ -54,4 +54,9 @@ public class SQLRepository implements Repository{
     public boolean exists(int idArticle) {
         return false;
     }
+
+    @Override
+    public IArticle getOne(int idArticle) throws Exception {
+        return null;
+    }
 }

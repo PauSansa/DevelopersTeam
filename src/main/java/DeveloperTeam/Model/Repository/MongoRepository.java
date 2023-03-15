@@ -31,5 +31,10 @@ public class MongoRepository implements Repository{
         return false;
     }
 
+    @Override
+    public IArticle getOne(int idArticle) throws Exception {
+        return null;
+    }
+
 
 }

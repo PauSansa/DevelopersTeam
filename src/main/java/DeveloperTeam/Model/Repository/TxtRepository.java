@@ -116,4 +116,29 @@ public class TxtRepository implements Repository{
 
         return found;
     }
+
+    @Override
+    public IArticle getOne(int idArticle) throws Exception {
+        IArticle art = null;
+        boolean found = false;
+
+        String line= "";
+        while((line=stockReader.readLine())!=null && !found){
+            String[] tokens = line.replace("{","").replace("}","").split(",");
+            int id = Integer.parseInt(tokens[1]);
+            if(id == idArticle) {
+                String name = tokens[2];
+                String caract = tokens[3];
+                Float price = Float.parseFloat(tokens[4]);
+                switch (tokens[0]) {
+                    case "Tree" -> art = new Tree(id, name, caract, price);
+                    case "Decor" -> art = new Decor(id, name, caract, price);
+                    case "Flower" -> art = new Flower(id, name, caract, price);
+                }
+                found=true;
+            }
+        }
+
+        return art;
+    }
 }

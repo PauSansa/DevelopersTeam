@@ -2,16 +2,12 @@ package DeveloperTeam.Model.Service;
 
 import DeveloperTeam.Application.AskParameter;
 import DeveloperTeam.Model.Entity.IArticle;
-import DeveloperTeam.Model.Entity.Decor;
-import DeveloperTeam.Model.Entity.Flower;
-import DeveloperTeam.Model.Entity.Tree;
-import DeveloperTeam.Model.Interfaces.ArticleFactory;
+import DeveloperTeam.Model.Builders.ArticleFactory;
 import DeveloperTeam.Model.Repository.MongoRepository;
 import DeveloperTeam.Model.Repository.Repository;
 import DeveloperTeam.Model.Repository.SQLRepository;
 import DeveloperTeam.Model.Repository.TxtRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

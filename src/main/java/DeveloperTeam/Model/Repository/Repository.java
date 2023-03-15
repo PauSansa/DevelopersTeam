@@ -11,5 +11,5 @@ public interface Repository {
     void removeStockItem(int idArticle) throws Exception;
     List<Ticket> getAllTickets() throws Exception;
     boolean exists(int idArticle) throws Exception;
-
+    IArticle getOne(int idArticle) throws Exception;
 }
