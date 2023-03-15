@@ -34,7 +34,6 @@ public class DevelopersService {
 
         byte kind = AskParameter.askByte("What do you wanna add?\n1-tree\n2-flower\n3-decor");
 
-       
         IArticle article = factory.getArticle(kind);
         try{
             data.addStockItem(article);
@@ -92,6 +91,16 @@ public class DevelopersService {
         }  catch (Exception e) {
                     throw new RuntimeException(e);
         }
+    }
+
+    public void getOne(){
+        int askIdArticle= AskParameter.askInteger("Write a Id Article: ");
+        try {
+            data.getOne(askIdArticle);
+        } catch (Exception e) {
+            System.out.println("There is not article. ");
+        }
+
     }
     public void createTicket(){
         //Pending of implementation ;
