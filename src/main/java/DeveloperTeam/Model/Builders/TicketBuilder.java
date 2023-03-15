@@ -9,8 +9,8 @@ public class TicketBuilder {
     DevelopersService service;
     Ticket cTicket;
 
-    public TicketBuilder(byte persistence) {
-        this.service = new DevelopersService(persistence);
+    public TicketBuilder(DevelopersService service) {
+        this.service = service;
     }
 
     public void build(){
@@ -47,6 +47,8 @@ public class TicketBuilder {
     public void addItemT(){
         service.listAllArticles();
         int id = AskParameter.askInteger("Enter the id of the Article to add");
+        IArticle article = service.getOne(id);
+        this.cTicket.getArticles().add(article);
     }
 
     public void deleteItemT(){

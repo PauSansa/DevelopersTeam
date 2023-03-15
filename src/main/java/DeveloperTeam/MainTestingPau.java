@@ -1,6 +1,7 @@
 package DeveloperTeam;
 
 
+import DeveloperTeam.Application.App;
 import DeveloperTeam.Model.Entity.Decor;
 import DeveloperTeam.Model.Entity.Flower;
 import DeveloperTeam.Model.Entity.IArticle;
@@ -18,12 +19,8 @@ import java.util.List;
 
 public class MainTestingPau {
     public static void main(String[] args) {
-
-        try {
-            Repository repo = new SQLRepository();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        App app = new App();
+        app.init();
     }
 
 }

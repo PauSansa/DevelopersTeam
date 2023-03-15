@@ -16,16 +16,8 @@ public class DevelopersService {
     ArticleFactory factory = new ArticleFactory();
     Repository data;
 
-    public DevelopersService(byte persistence){
-        try{
-            switch(persistence){
-                default -> data = new TxtRepository();
-                case 1 -> data = new SQLRepository();
-                case 2 -> data = new MongoRepository();
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+    public DevelopersService(Repository repo){
+        data = repo;
 
     }
 
@@ -93,15 +85,27 @@ public class DevelopersService {
         }
     }
 
-    public void getOne(){
+    public IArticle getOne(){
+        IArticle article = null;
         int askIdArticle= AskParameter.askInteger("Write a Id Article: ");
         try {
-            data.getOne(askIdArticle);
+            article = data.getOne(askIdArticle);
         } catch (Exception e) {
             System.out.println("There is not article. ");
         }
+        return article;
+    }
+    public IArticle getOne(int id){
+        IArticle article = null;
+        try {
+            article = data.getOne(id);
+        } catch (Exception e) {
+            System.out.println("There is not article. ");
+        }
+        return article;
 
     }
+
     public void createTicket(){
         //Pending of implementation ;
     }

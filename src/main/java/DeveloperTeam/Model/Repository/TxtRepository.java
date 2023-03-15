@@ -4,6 +4,7 @@ package DeveloperTeam.Model.Repository;
 import DeveloperTeam.Application.WindowManager;
 import DeveloperTeam.Model.Entity.*;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,8 @@ public class TxtRepository implements Repository{
     @Override
     public List<IArticle> getAll() throws Exception {
         List<IArticle> articles = new ArrayList<>();
+
+        stockReader.reset();
 
         String line= "";
         while((line=stockReader.readLine())!=null){
