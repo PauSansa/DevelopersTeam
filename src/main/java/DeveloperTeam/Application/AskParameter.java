@@ -100,4 +100,24 @@ public class AskParameter {
         return outputParameter;
     }
 
+    public static String askMaterial(String message){
+
+
+        String outputParameterMaterial = null;
+        boolean continua  = true;
+
+        do {
+            try {
+                System.out.println("\r"+message);
+                outputParameterMaterial = myScannerObj.nextLine().toLowerCase();
+                if (outputParameterMaterial.equalsIgnoreCase("wood" ) || outputParameterMaterial.equalsIgnoreCase("plastic" ) ) {
+                    continua=false;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entered value isn't a 'wood' or 'plastic', try again! ");
+            }
+        } while (continua);
+        return outputParameterMaterial;
+    }
+
 }
