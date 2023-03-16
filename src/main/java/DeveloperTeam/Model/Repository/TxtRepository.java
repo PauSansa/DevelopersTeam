@@ -36,7 +36,6 @@ public class TxtRepository implements Repository{
             ticketReader.mark(1000);
         } catch(Exception e){
             e.printStackTrace();
-            System.out.println("Error creating the necessary files.");
         }
 
 
@@ -56,7 +55,6 @@ public class TxtRepository implements Repository{
             stockWriter.flush();
         }catch(IOException e){
             e.printStackTrace();
-            System.out.println("Error creating the article. Please try again.");
         }
     }
 
@@ -96,12 +94,11 @@ public class TxtRepository implements Repository{
             lines.add(line);
         }
 
+
         try (PrintWriter writer = new PrintWriter(new FileWriter(stockFile))) {
             for (String l : lines) {
                 writer.println(l);
             }
-        }catch (Exception e){
-            System.out.println("Error removing the article. Please try again.");
         }
     }
 
@@ -112,7 +109,7 @@ public class TxtRepository implements Repository{
 
 
     @Override
-    public void insertTicket(Ticket ticket) {
+    public void insertTicket(Ticket ticket) throws Exception{
         ticketWriter.println("{");
 
         ticketWriter.println(ticket.getTicketID());
@@ -130,6 +127,8 @@ public class TxtRepository implements Repository{
         ticketWriter.println(ticket.getTicketTotal()+"€");
         ticketWriter.println("}");
         ticketWriter.flush();
+
+
 
     }
 

@@ -1,6 +1,7 @@
 package DeveloperTeam.Application;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -26,6 +27,31 @@ class AskParameterTest {
         int expected = 10;
         int actual = AskParameter.askInteger("Enter an integer: ");
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void askIntegerTestRange() {
+        // Arrange
+        String input = "5\n";
+        int expected = 5;
+        // Act
+        int result = AskParameter.askIntegerRange("Enter an integer between 1 and 10: ", 1, 10);
+        // Assert
+        Assertions.assertEquals(expected, result);
+    }
+
+
+    @Test
+    public void testInvalidIntegerRange() {
+        // Arrange
+        String input = "15\n5";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        int minNumber= 0;
+        int  maxNumber=10;
+        // Act
+        int result = AskParameter.askIntegerRange("Enter an integer between " + minNumber + " and " + maxNumber + ":", minNumber, maxNumber);
+        // Assert
+        Assertions.assertTrue(result < minNumber || result > maxNumber);
     }
 
     @Test
@@ -75,4 +101,10 @@ class AskParameterTest {
         String actual = AskParameter.askMaterial(message);
         assertEquals(expected, actual);
     }
+
+    @BeforeEach
+    void setUp() {
+    }
+
+
 }
