@@ -55,7 +55,7 @@ public class DevelopersService {
             if (articles.size()==0){
                 System.out.println("No Articles available");
             } else {
-                System.out.println("The articles available are: ");
+                System.out.println("The available articles are: ");
                 articles.forEach(System.out::println);
             }
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class DevelopersService {
                 Map<? extends Class<?>, Long> classCount = articles.stream()
                         .collect(Collectors.groupingBy(Object::getClass, Collectors.counting()));
 
-                System.out.println("Articles Available in Stock are: ");
+                System.out.println("Available articles in Stock:");
 
                 classCount.forEach((key, value) -> System.out.println(key.getCanonicalName() + ": " + value));
             }
@@ -88,11 +88,11 @@ public class DevelopersService {
 
     public IArticle getOne(){
         IArticle article = null;
-        int askIdArticle= AskParameter.askInteger("Write a Id Article: ");
+        int askIdArticle= AskParameter.askInteger("Introduce the Id of the article: ");
         try {
             article = data.getOne(askIdArticle);
         } catch (Exception e) {
-            System.out.println("There is not article. ");
+            System.out.println("Error retrieving the article. Please try again");
         }
         return article;
     }
@@ -101,7 +101,7 @@ public class DevelopersService {
         try {
             article = data.getOne(id);
         } catch (Exception e) {
-            System.out.println("There is not article. ");
+            System.out.println("Error retrieving the article. Please try again");
         }
         return article;
 
