@@ -7,6 +7,7 @@ import DeveloperTeam.Model.Entity.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //TODO implmementar metodos
@@ -15,7 +16,7 @@ public class TxtRepository implements Repository{
     private File ticketFile;
     private File stockFile;
     private FileWriter stockWriter;
-    private FileWriter ticketWriter;
+    private PrintWriter ticketWriter;
     private BufferedReader stockReader;
     private BufferedReader ticketReader;
 
@@ -28,7 +29,7 @@ public class TxtRepository implements Repository{
         stockFile = new File(path + "/stock.txt");
         try{
             stockWriter = new FileWriter(stockFile,true);
-            ticketWriter = new FileWriter(ticketFile,true);
+            ticketWriter = new PrintWriter(new FileWriter(ticketFile,true));
 
             stockReader = new BufferedReader(new FileReader(stockFile));
             ticketReader = new BufferedReader(new FileReader(ticketFile));
@@ -109,6 +110,29 @@ public class TxtRepository implements Repository{
     }
 
     @Override
+    public void insertTicket(Ticket ticket) throws Exception{
+        ticketWriter.println("{");
+
+        ticketWriter.println(ticket.getTicketID());
+        ticketWriter.println(ticket.getNameClient());
+        ticketWriter.println("12/04/2003");
+        ticketWriter.println("####");
+        for(IArticle art : ticket.getArticles()){
+            ticketWriter.print(art.getId());
+            ticketWriter.print(","+art.getName());
+            ticketWriter.print(","+art.getCaracteristic());
+            ticketWriter.println(","+art.getPrice());
+        }
+        ticketWriter.println("$$$$");
+        ticketWriter.println(ticket.getTicketTotal());
+        ticketWriter.println("}");
+        ticketWriter.flush();
+
+
+
+    }
+
+    @Override
     public boolean exists(int idArticle) throws Exception {
         String line;
         boolean found = false;
@@ -143,6 +167,8 @@ public class TxtRepository implements Repository{
                 found=true;
             }
         }
+
+        stockReader.reset();
 
         return art;
     }

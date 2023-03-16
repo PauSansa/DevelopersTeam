@@ -3,6 +3,7 @@ package DeveloperTeam.Model.Service;
 import DeveloperTeam.Application.AskParameter;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Builders.ArticleFactory;
+import DeveloperTeam.Model.Entity.Ticket;
 import DeveloperTeam.Model.Repository.MongoRepository;
 import DeveloperTeam.Model.Repository.Repository;
 import DeveloperTeam.Model.Repository.SQLRepository;
@@ -106,7 +107,12 @@ public class DevelopersService {
 
     }
 
-    public void createTicket(){
-        //Pending of implementation ;
+    public void insertTicket(Ticket ticket){
+        try{
+            data.insertTicket(ticket);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

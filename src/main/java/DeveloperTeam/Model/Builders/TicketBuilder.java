@@ -52,14 +52,18 @@ public class TicketBuilder {
     }
 
     public void deleteItemT(){
-        System.out.println("Remove Item T");
+        service.listAllArticles();
+        int id = AskParameter.askInteger("Enter the id of the Article to add");
+        IArticle article = service.getOne(id);
+        this.cTicket.getArticles().remove(article);
     }
 
     public void listCurrentTicket(){
-        System.out.println("List Item T");
+        this.cTicket.getArticles().forEach(System.out::println);
     }
 
     public void saveTicket(){
-        System.out.println("Save Item T");
+        service.insertTicket(cTicket);
+        cTicket=null;
     }
 }

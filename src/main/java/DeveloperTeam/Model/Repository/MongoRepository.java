@@ -27,6 +27,11 @@ public class MongoRepository implements Repository{
     }
 
     @Override
+    public void insertTicket(Ticket ticket) throws Exception {
+
+    }
+
+    @Override
     public boolean exists(int idArticle) {
         return false;
     }
