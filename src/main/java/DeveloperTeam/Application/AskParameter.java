@@ -30,6 +30,30 @@ public class AskParameter {
 
     }
 
+    public static int askIntegerRange(String message, int minNumber, int maxNum){
+
+        int outputParameter=0;
+        boolean continua = true;
+
+        do{
+            try{
+                System.out.println("\r"+message);
+                outputParameter= myScannerObj.nextInt();
+                if(outputParameter > minNumber || outputParameter < maxNum) {
+                    continua = false;
+                }
+            } catch(InputMismatchException e) {
+                System.out.println("Entered value isn't a Integer, please try again!");
+            }
+
+            myScannerObj.nextLine();
+
+        } while(continua);
+
+        return outputParameter;
+
+    }
+
     public static String askString(String message){
         System.out.println("\r"+message);
         return myScannerObj.nextLine().toLowerCase();
@@ -70,6 +94,27 @@ public class AskParameter {
                 outputParameter = myScannerObj.nextByte();
                 continua=false;
 
+            } catch (InputMismatchException e) {
+                System.out.println("Entered value isn't a byte, try again! ");
+            }
+            myScannerObj.nextLine();
+        } while (continua);
+        return outputParameter;
+    }
+
+    public static byte askByteRange(String message, int minNumber, int maxNum){
+
+
+        byte outputParameter = 0;
+        boolean continua  = true;
+
+        do {
+            try {
+                System.out.println("\r"+message);
+                outputParameter = myScannerObj.nextByte();
+                if(outputParameter > minNumber || outputParameter < maxNum) {
+                    continua = false;
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Entered value isn't a byte, try again! ");
             }
@@ -119,5 +164,4 @@ public class AskParameter {
         } while (continua);
         return outputParameterMaterial;
     }
-
 }
