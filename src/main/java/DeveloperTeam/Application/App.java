@@ -59,9 +59,7 @@ public class App {
                 case 2 -> service.removeArticle();
                 case 3 -> service.listAllArticles();
                 case 4 -> service.listAllStock();
-                case 5 -> {
-                    ticketBuilder.build();
-                }
+                case 7 -> ticketBuilder.build();
             }
 
         }
@@ -72,7 +70,9 @@ public class App {
         System.out.println("2.-Delete Item");
         System.out.println("3.-List All");
         System.out.println("4.-List Stock (with quantity)");
-        System.out.println("5.-Create a Ticket (Ticket Menu)");
+        System.out.println("5.-List all Tickets");
+        System.out.println("6.-Print total facturated");
+        System.out.println("7.-Create a Ticket (Ticket Menu)");
 
         return AskParameter.askByte("Insert Your Option: ");
     }

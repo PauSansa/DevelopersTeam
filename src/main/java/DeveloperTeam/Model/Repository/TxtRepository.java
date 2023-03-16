@@ -4,10 +4,8 @@ package DeveloperTeam.Model.Repository;
 import DeveloperTeam.Application.WindowManager;
 import DeveloperTeam.Model.Entity.*;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 //TODO implmementar metodos
@@ -109,22 +107,24 @@ public class TxtRepository implements Repository{
         return null;
     }
 
+
     @Override
     public void insertTicket(Ticket ticket) throws Exception{
         ticketWriter.println("{");
 
         ticketWriter.println(ticket.getTicketID());
         ticketWriter.println(ticket.getNameClient());
+        //TODO donar format string a getDate del Ticket y imprimirlo
         ticketWriter.println("12/04/2003");
         ticketWriter.println("####");
         for(IArticle art : ticket.getArticles()){
             ticketWriter.print(art.getId());
             ticketWriter.print(","+art.getName());
             ticketWriter.print(","+art.getCaracteristic());
-            ticketWriter.println(","+art.getPrice());
+            ticketWriter.println(","+art.getPrice()+"€");
         }
         ticketWriter.println("$$$$");
-        ticketWriter.println(ticket.getTicketTotal());
+        ticketWriter.println(ticket.getTicketTotal()+"€");
         ticketWriter.println("}");
         ticketWriter.flush();
 
