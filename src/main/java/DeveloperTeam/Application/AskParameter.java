@@ -19,7 +19,7 @@ public class AskParameter {
                 outputParameter= myScannerObj.nextInt();
                 continua= false;
             } catch(InputMismatchException e) {
-                System.out.println("Entered value isn't a Integer, try again! ");
+                System.out.println("Entered value isn't a Integer, please try again!");
             }
 
             myScannerObj.nextLine();
@@ -91,7 +91,7 @@ public class AskParameter {
                 continua=false;
 
             } catch (InputMismatchException e) {
-                System.out.println("Entered value isn't a booolean, try again! ");
+                System.out.println("Entered value isn't a boolean, please try again!");
             }
             myScannerObj.nextLine();
 
@@ -114,7 +114,7 @@ public class AskParameter {
                     continua=false;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Entered value isn't a 'wood' or 'plastic', try again! ");
+                System.out.println("Entered value isn't 'wood' or 'plastic', please try again!");
             }
         } while (continua);
         return outputParameterMaterial;

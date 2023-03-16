@@ -74,7 +74,7 @@ public class App {
         System.out.println("4.-List Stock (with quantity)");
         System.out.println("5.-Create a Ticket (Ticket Menu)");
 
-        return AskParameter.askByte("Insert Your Option: ");
+        return AskParameter.askByte("Type in your choice: ");
     }
 
 
