@@ -113,6 +113,14 @@ public class DevelopersService {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //TODO Implment Method listAllTickets and ListTotalGains
+    public void listAllTickets(){
+
+    }
+
+    public void listTotalGains(){
 
     }
 }
