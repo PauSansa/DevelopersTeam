@@ -3,6 +3,7 @@ package DeveloperTeam.Model.Repository;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -53,6 +54,11 @@ public class SQLRepository implements Repository{
     @Override
     public void insertTicket(Ticket ticket) throws Exception {
 
+    }
+
+    @Override
+    public int countStock() throws IOException {
+        return 0;
     }
 
     @Override

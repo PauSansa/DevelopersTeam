@@ -14,11 +14,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DevelopersService {
-    ArticleFactory factory = new ArticleFactory();
+    ArticleFactory factory;
     Repository data;
 
     public DevelopersService(Repository repo){
         data = repo;
+        factory = new ArticleFactory(repo);
 
     }
 

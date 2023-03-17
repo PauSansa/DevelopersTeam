@@ -3,6 +3,7 @@ package DeveloperTeam.Model.Repository;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MongoRepository implements Repository{
@@ -29,6 +30,11 @@ public class MongoRepository implements Repository{
     @Override
     public void insertTicket(Ticket ticket) throws Exception {
 
+    }
+
+    @Override
+    public int countStock() throws IOException {
+        return 0;
     }
 
     @Override

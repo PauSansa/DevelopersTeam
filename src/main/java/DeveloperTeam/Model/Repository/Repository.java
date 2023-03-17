@@ -3,6 +3,7 @@ package DeveloperTeam.Model.Repository;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface Repository {
@@ -13,5 +14,6 @@ public interface Repository {
     IArticle getOne(int idArticle) throws Exception;
     List<Ticket> getAllTickets() throws Exception;
     void insertTicket(Ticket ticket) throws Exception;
+    int countStock() throws IOException;
 
 }
