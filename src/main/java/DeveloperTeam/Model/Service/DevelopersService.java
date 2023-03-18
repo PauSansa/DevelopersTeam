@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//TODO implementar metodes veure tots tickets y sumar
 public class DevelopersService {
     ArticleFactory factory;
     Repository data;
