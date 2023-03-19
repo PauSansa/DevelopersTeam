@@ -133,6 +133,21 @@ public class TxtRepository implements Repository{
     }
 
     @Override
+    public int countStock() throws IOException {
+        int nLines = 0;
+        try{
+            while(stockReader.readLine() != null){
+                nLines++;
+            }
+        }catch (IOException e){
+            System.out.println("An unexpected error has occurred!");
+        }finally {
+            stockReader.reset();
+        }
+        return nLines;
+    }
+
+    @Override
     public boolean exists(int idArticle) throws Exception {
         String line;
         boolean found = false;

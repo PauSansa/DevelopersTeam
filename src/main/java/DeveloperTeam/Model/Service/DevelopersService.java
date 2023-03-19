@@ -13,12 +13,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//TODO implementar metodes veure tots tickets y sumar
 public class DevelopersService {
-    ArticleFactory factory = new ArticleFactory();
+    ArticleFactory factory;
     Repository data;
 
     public DevelopersService(Repository repo){
         data = repo;
+        factory = new ArticleFactory(repo);
 
     }
 
@@ -114,6 +116,14 @@ public class DevelopersService {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //TODO Implment Method listAllTickets and ListTotalGains
+    public void listAllTickets(){
+
+    }
+
+    public void listTotalGains(){
 
     }
 }

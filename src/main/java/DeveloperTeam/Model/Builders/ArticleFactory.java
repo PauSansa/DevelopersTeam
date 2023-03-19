@@ -4,10 +4,24 @@ import DeveloperTeam.Model.Entity.Decor;
 import DeveloperTeam.Model.Entity.Flower;
 import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Tree;
+import DeveloperTeam.Model.Repository.Repository;
 
 public class ArticleFactory {
+    private Repository data;
+    private static int nArticles;
 
-    private static int nArticles = 0;
+    public ArticleFactory(Repository repository) {
+        this.data = repository;
+        try{
+            nArticles = data.countStock();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
     public IArticle getArticle(Byte type) {
 
