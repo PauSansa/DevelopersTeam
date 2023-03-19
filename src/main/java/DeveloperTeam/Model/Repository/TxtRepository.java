@@ -127,9 +127,6 @@ public class TxtRepository implements Repository{
         ticketWriter.println(ticket.getTicketTotal()+"€");
         ticketWriter.println("}");
         ticketWriter.flush();
-
-
-
     }
 
     @Override

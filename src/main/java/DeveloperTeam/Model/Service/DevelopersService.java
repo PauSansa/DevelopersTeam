@@ -99,6 +99,7 @@ public class DevelopersService {
         }
         return article;
     }
+
     public IArticle getOne(int id){
         IArticle article = null;
         try {
@@ -107,7 +108,6 @@ public class DevelopersService {
             System.out.println("Error retrieving the article. Please try again");
         }
         return article;
-
     }
 
     public void insertTicket(Ticket ticket){
