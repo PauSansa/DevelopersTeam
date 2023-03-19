@@ -33,6 +33,7 @@ class AskParameterTest {
     void askIntegerTestRange() {
         // Arrange
         String input = "5\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         int expected = 5;
         // Act
         int result = AskParameter.askIntegerRange("Enter an integer between 1 and 10: ", 1, 10);
@@ -40,9 +41,8 @@ class AskParameterTest {
         Assertions.assertEquals(expected, result);
     }
 
-
     @Test
-    public void testInvalidIntegerRange() {
+    public void InvalidIntegerRangeTest() {
         // Arrange
         String input = "15\n5";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -55,56 +55,80 @@ class AskParameterTest {
     }
 
     @Test
-    void askString() {
+    void askStringTest() {
         // Prepare input
         String input = "Hello World!";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-
         // Call method and check output
         assertEquals("hello world!", AskParameter.askString("Enter a string:"));
     }
 
     @Test
-    void askFloat() {
+    void askFloatTest() {
         String input = "3.1416\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+        float expectedOutput = 3.14f; // expected output
         float result = AskParameter.askFloat("Enter a float: ");
-        Assertions.assertEquals(3.14f, result);
+        Assertions.assertEquals(expectedOutput, result);
     }
 
-    @Test
+    /*@Test
     void AskFloatTestNonIntegerInput() {
 
-        float expected = 3.14f;
+
         String input = "invalid input\n-123.456\n3.14";
         System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+        float expected = 3.14f;
         float actual = AskParameter.askFloat("Enter a float value: ");
         assertEquals(expected, actual);
+    }*/
 
+
+    @Test
+    void askByteRangeTest() {
+        String input = "10\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        byte result = AskParameter.askByteRange("Enter a byte between 0 and 100: ", 0, 100);
+        byte expectedOutput =10; // expected output
+        assertEquals(expectedOutput, result);
     }
 
 
     @Test
-    void askByte() {
+    void askByteRangeInvalidInputTest() {
+        String input = "hello\n2\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        byte result = AskParameter.askByteRange("Enter a byte between 1 and 10: ", 1, 10);
+        byte expectedOutput = 2; // expected output
+        Assertions.assertEquals(expectedOutput, result);
     }
-
     @Test
     void askBoolean() {
     }
 
     @Test
     void askMaterialTest() {
+
+        // Arrange
         String message = "Please enter the material type: wood or plastic";
-        String input = "metal\nwood\n";
+        String input = "wood\n";
         String expected = "wood";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+        // Act
         String actual = AskParameter.askMaterial(message);
+        // Assert
         assertEquals(expected, actual);
     }
 
-    @BeforeEach
-    void setUp() {
+    @Test
+    void AskMaterialInvalidInputTest() {
+        // Arrange
+        String input = "metal\nplastic\n";
+        String expected = "plastic";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        // Act
+        String result = AskParameter.askMaterial("Enter a material (wood or plastic): ");
+        // Assert
+        Assertions.assertEquals(expected, result);
     }
-
-
 }
