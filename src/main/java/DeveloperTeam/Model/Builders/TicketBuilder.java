@@ -25,7 +25,10 @@ public class TicketBuilder {
                 case 1 -> addItemT();
                 case 2 -> deleteItemT();
                 case 3 -> listCurrentTicket();
-                case 4 -> saveTicket();
+                case 4 -> {
+                    saveTicket();
+                    return;
+                }
                 case 5 -> {
                     return;
                 }

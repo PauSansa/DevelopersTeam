@@ -103,7 +103,12 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public List<Ticket> getAllTickets() {
+    public List<Ticket> getAllTickets() throws Exception{
+        List<Ticket> tickets = new ArrayList<>();
+        String l = "";
+        while((l=stockReader.readLine()) != null){
+
+        }
         return null;
     }
 
