@@ -23,13 +23,18 @@ public class MongoRepository implements Repository{
     }
 
     @Override
-    public List<Ticket> getAllTickets() {
+    public List<String> getAllTickets() {
         return null;
     }
 
     @Override
     public void insertTicket(Ticket ticket){
 
+    }
+
+    @Override
+    public float listTotalGains() throws IOException {
+        return 0;
     }
 
     @Override
