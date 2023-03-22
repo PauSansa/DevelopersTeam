@@ -75,7 +75,6 @@ public class App {
         System.out.println("5.-See all Tickets");
         System.out.println("6.-See total gains");
         System.out.println("7.-Create a Ticket (Ticket Menu)");
-
         return AskParameter.askByte("Type in your choice: ");
     }
 
