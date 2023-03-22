@@ -117,20 +117,35 @@ public class TxtRepository implements Repository{
 
 
     @Override
-    public List<Ticket> getAllTickets() throws IOException{
-        List<Ticket> tickets = new ArrayList<>();
-        try{
-            String l = "";
-            while((l=stockReader.readLine()) != null){
+    public List<String> getAllTickets() throws IOException{
+        List<String> lines = ticketReader.lines().toList();
 
+        ticketReader.close();
+        ticketReader = new BufferedReader(new FileReader(ticketFile));
+
+        return lines;
+
+    }
+
+
+    @Override
+    public float listTotalGains() throws IOException {
+        float totalGain = 0f;
+
+        List<String> lines = ticketReader.lines().toList();
+
+        for (int i =0; i < lines.size();i++){
+
+            if (lines.get(i).equalsIgnoreCase("$$$$")){
+                totalGain += Float.parseFloat(lines.get(i+1).substring(0,lines.get(i+1).length()-1));
             }
-        }catch (IOException e){
-            e.printStackTrace();
-        }finally {
-            stockReader.close();
+
         }
 
-        return null;
+        ticketReader.close();
+        ticketReader = new BufferedReader(new FileReader(ticketFile));
+
+        return totalGain;
     }
 
 

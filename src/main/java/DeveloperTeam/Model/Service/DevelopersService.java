@@ -9,6 +9,7 @@ import DeveloperTeam.Model.Repository.Repository;
 import DeveloperTeam.Model.Repository.SQLRepository;
 import DeveloperTeam.Model.Repository.TxtRepository;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -122,9 +123,25 @@ public class DevelopersService {
     //TODO Implment Method listAllTickets and ListTotalGains
     public void listAllTickets(){
 
+        try {
+            System.out.println("List of all saved tickets:");
+            List<String> lines = data.getAllTickets();
+            for (String line:lines) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void listTotalGains(){
+
+        try {
+            System.out.println("Total amount from all tickets: "+data.listTotalGains() +" €");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

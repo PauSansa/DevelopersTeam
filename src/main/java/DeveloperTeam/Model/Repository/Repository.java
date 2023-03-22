@@ -16,8 +16,10 @@ public interface Repository {
     int countStock() throws IOException;
 
     //Ticket
-    List<Ticket> getAllTickets() throws IOException;
+    List<String> getAllTickets() throws IOException;
     void insertTicket(Ticket ticket);
+
+    float listTotalGains() throws IOException;
 
 
 }
