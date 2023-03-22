@@ -4,10 +4,7 @@ import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class SQLRepository implements Repository{
@@ -22,18 +19,27 @@ public class SQLRepository implements Repository{
         );
         stmt = conn.createStatement();
         String initStock = "CREATE TABLE IF NOT EXISTS stock(\n" +
-                "clase VARCHAR(30),\n" +
-                "id INT PRIMARY KEY,\n" +
-                "characteristic VARCHAR(30),\n" +
+                "class VARCHAR(30),\n" +
+                "id INT,\n" +
+                "name VARCHAR(30),\n" +
+                "caracteristic VARCHAR(30),\n" +
                 "price FLOAT\n" +
-                ")";
+                ");";
         String initTicket = "";
         stmt.execute(initStock);
     }
 
     @Override
     public void addStockItem(IArticle IArticle) {
-
+        try {
+            String query = "INSERT INTO stock (class, id, name, caracteristic, price) " +
+                    "VALUES ('%s', %d, '%s', '%s', %s);";
+            query = String.format(query, IArticle.getClass().getSimpleName(), IArticle.getId(), IArticle.getName(),
+                    IArticle.getCaracteristic(), String.format("%.2f",IArticle.getPrice()).replace(",","."));
+            stmt.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -62,8 +68,14 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public int countStock() throws IOException {
-        return 0;
+    public int countStock() throws SQLException {
+        ResultSet rs =stmt.executeQuery("SELECT id FROM stock ORDER BY id DESC LIMIT 1;");
+        int id = 0;
+        if(rs.next()){
+            id = rs.getInt("id")+1;
+        }
+        System.out.println("break");
+        return id;
     }
 
     @Override

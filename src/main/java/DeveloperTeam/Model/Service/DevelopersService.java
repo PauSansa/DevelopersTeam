@@ -129,7 +129,7 @@ public class DevelopersService {
             for (String line:lines) {
                 System.out.println(line);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -139,7 +139,7 @@ public class DevelopersService {
 
         try {
             System.out.println("Total amount from all tickets: "+data.listTotalGains() +" €");
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
