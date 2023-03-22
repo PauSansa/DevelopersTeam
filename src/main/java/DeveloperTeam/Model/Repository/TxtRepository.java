@@ -8,7 +8,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO implmementar metodos
 public class TxtRepository implements Repository{
     private String path;
     private File ticketFile;
@@ -17,6 +16,7 @@ public class TxtRepository implements Repository{
     private PrintWriter ticketWriter;
     private BufferedReader stockReader;
     private BufferedReader ticketReader;
+
 
     public TxtRepository(){
         this.path = WindowManager.getPath();
@@ -59,67 +59,88 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll() throws Exception {
+    public List<IArticle> getAll() throws IOException{
         List<IArticle> articles = new ArrayList<>();
 
-        String line= "";
-        while((line=stockReader.readLine())!=null){
-            String[] tokens = line.replace("{","").replace("}","").split(",");
-            int id = Integer.parseInt(tokens[1]);
-            String name = tokens[2];
-            String caract = tokens[3];
-            Float price = Float.parseFloat(tokens[4]);
-            switch (tokens[0]){
-                case "Tree" -> articles.add(new Tree(id,name,caract,price));
-                case "Decor" -> articles.add(new Decor(id,name,caract,price));
-                case "Flower" -> articles.add(new Flower(id,name,caract,price));
+        try{
+            String line= "";
+            while((line=stockReader.readLine())!=null){
+                String[] tokens = line.replace("{","").replace("}","").split(",");
+                int id = Integer.parseInt(tokens[1]);
+                String name = tokens[2];
+                String caract = tokens[3];
+                Float price = Float.parseFloat(tokens[4]);
+                switch (tokens[0]){
+                    case "Tree" -> articles.add(new Tree(id,name,caract,price));
+                    case "Decor" -> articles.add(new Decor(id,name,caract,price));
+                    case "Flower" -> articles.add(new Flower(id,name,caract,price));
+                }
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            stockReader.close();
+            stockReader = new BufferedReader(new FileReader(stockFile));
         }
-        stockReader.reset();
-
         return articles;
     }
 
 
 
     @Override
-    public void removeStockItem(int idArticle) throws Exception{
-        List<String> lines = new ArrayList<>();
+    public void removeStockItem(int idArticle) throws IOException{
+        try{
+            List<String> lines = new ArrayList<>();
 
-        String line;
-        while ((line = stockReader.readLine()) != null) {
-            if (line.contains("," + idArticle + ",")) {
-                continue;
+            String line;
+            while ((line = stockReader.readLine()) != null) {
+                if (line.contains("," + idArticle + ",")) {
+                    continue;
+                }
+                lines.add(line);
             }
-            lines.add(line);
+
+
+            try (PrintWriter writer = new PrintWriter(new FileWriter(stockFile))) {
+                for (String l : lines) {
+                    writer.println(l);
+                }
+            }
+        } catch(IOException e){
+            e.printStackTrace();
+        } finally {
+            stockReader.close();
+            stockReader = new BufferedReader(new FileReader(stockFile));
         }
 
-
-        try (PrintWriter writer = new PrintWriter(new FileWriter(stockFile))) {
-            for (String l : lines) {
-                writer.println(l);
-            }
-        }
     }
 
-    @Override
-    public List<Ticket> getAllTickets() throws Exception{
-        List<Ticket> tickets = new ArrayList<>();
-        String l = "";
-        while((l=stockReader.readLine()) != null){
 
+    @Override
+    public List<Ticket> getAllTickets() throws IOException{
+        List<Ticket> tickets = new ArrayList<>();
+        try{
+            String l = "";
+            while((l=stockReader.readLine()) != null){
+
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            stockReader.close();
         }
+
         return null;
     }
 
 
     @Override
-    public void insertTicket(Ticket ticket) throws Exception{
+    public void insertTicket(Ticket ticket){
         ticketWriter.println("{");
 
         ticketWriter.println(ticket.getTicketID());
         ticketWriter.println(ticket.getNameClient());
-        //TODO donar format string a getDate del Ticket y imprimirlo
+        ticketWriter.println(ticket.getAddressClient());
         ticketWriter.println("12/04/2003");
         ticketWriter.println("####");
         for(IArticle art : ticket.getArticles()){
@@ -138,58 +159,74 @@ public class TxtRepository implements Repository{
     }
 
     @Override
-    public int countStock() throws IOException {
-        int nLines = 0;
+    public int countStock() throws IOException{
+        int id = 0;
         try{
-            while(stockReader.readLine() != null){
-                nLines++;
+            String last = "", line;
+
+            while ((line = stockReader.readLine()) != null) {
+                last = line;
             }
-        }catch (IOException e){
-            System.out.println("An unexpected error has occurred!");
+            String[] tokens = last.replace("{","").replace("}","").split(",");
+            id = Integer.parseInt(tokens[1]) + 1;
+        } catch (IOException e){
+            e.printStackTrace();
         }finally {
-            stockReader.reset();
+            stockReader.close();
+            stockReader = new BufferedReader(new FileReader(stockFile));
         }
-        return nLines;
+        return id;
     }
 
     @Override
-    public boolean exists(int idArticle) throws Exception {
+    public boolean exists(int idArticle) throws IOException{
         String line;
         boolean found = false;
 
-        while((line=stockReader.readLine())!=null && !found ){
-            if (line.contains("," + idArticle + ",")) {
-                found = true;
+        try{
+            while((line=stockReader.readLine())!=null && !found ){
+                if (line.contains("," + idArticle + ",")) {
+                    found = true;
+                }
             }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            stockReader.close();
+            stockReader = new BufferedReader(new FileReader(stockFile));
         }
+
 
         return found;
     }
 
     @Override
-    public IArticle getOne(int idArticle) throws Exception {
+    public IArticle getOne(int idArticle) throws IOException{
         IArticle art = null;
-        boolean found = false;
-
-        String line= "";
-        while((line=stockReader.readLine())!=null && !found){
-            String[] tokens = line.replace("{","").replace("}","").split(",");
-            int id = Integer.parseInt(tokens[1]);
-            if(id == idArticle) {
-                String name = tokens[2];
-                String caract = tokens[3];
-                Float price = Float.parseFloat(tokens[4]);
-                switch (tokens[0]) {
-                    case "Tree" -> art = new Tree(id, name, caract, price);
-                    case "Decor" -> art = new Decor(id, name, caract, price);
-                    case "Flower" -> art = new Flower(id, name, caract, price);
+        try{
+            boolean found = false;
+            String line= "";
+            while((line=stockReader.readLine())!=null && !found){
+                String[] tokens = line.replace("{","").replace("}","").split(",");
+                int id = Integer.parseInt(tokens[1]);
+                if(id == idArticle) {
+                    String name = tokens[2];
+                    String caract = tokens[3];
+                    Float price = Float.parseFloat(tokens[4]);
+                    switch (tokens[0]) {
+                        case "Tree" -> art = new Tree(id, name, caract, price);
+                        case "Decor" -> art = new Decor(id, name, caract, price);
+                        case "Flower" -> art = new Flower(id, name, caract, price);
+                    }
+                    found=true;
                 }
-                found=true;
             }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            stockReader.close();
+            stockReader = new BufferedReader(new FileReader(stockFile));
         }
-
-        stockReader.reset();
-
         return art;
     }
 }

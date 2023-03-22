@@ -28,7 +28,7 @@ public class MongoRepository implements Repository{
     }
 
     @Override
-    public void insertTicket(Ticket ticket) throws Exception {
+    public void insertTicket(Ticket ticket){
 
     }
 
@@ -43,7 +43,7 @@ public class MongoRepository implements Repository{
     }
 
     @Override
-    public IArticle getOne(int idArticle) throws Exception {
+    public IArticle getOne(int idArticle){
         return null;
     }
 

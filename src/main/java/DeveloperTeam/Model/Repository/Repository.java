@@ -8,16 +8,16 @@ import java.util.List;
 
 public interface Repository {
     //Stock
-    void addStockItem(IArticle art) throws Exception;
-    List<IArticle> getAll() throws Exception;
-    void removeStockItem(int idArticle) throws Exception;
-    boolean exists(int idArticle) throws Exception;
-    IArticle getOne(int idArticle) throws Exception;
+    void addStockItem(IArticle art);
+    List<IArticle> getAll() throws IOException;
+    void removeStockItem(int idArticle) throws IOException;
+    boolean exists(int idArticle) throws IOException;
+    IArticle getOne(int idArticle) throws IOException;
     int countStock() throws IOException;
 
     //Ticket
-    List<Ticket> getAllTickets() throws Exception;
-    void insertTicket(Ticket ticket) throws Exception;
+    List<Ticket> getAllTickets() throws IOException;
+    void insertTicket(Ticket ticket);
 
 
 }

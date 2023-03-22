@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-//TODO implementar metodes veure tots tickets y sumar
+//TODO implementar metodes veure tots tickets y sumar factures
 public class DevelopersService {
     ArticleFactory factory;
     Repository data;
@@ -24,7 +24,6 @@ public class DevelopersService {
 
     }
 
-    //returns 1 if created and 0 if not
     public void createArticle(){
 
         byte kind = AskParameter.askByte("What do you wanna add?\n1-tree\n2-flower\n3-decor");
@@ -99,12 +98,14 @@ public class DevelopersService {
         }
         return article;
     }
+
+    //Method Overcharge to use it in ticketBuilder
     public IArticle getOne(int id){
         IArticle article = null;
         try {
             article = data.getOne(id);
         } catch (Exception e) {
-            System.out.println("Error retrieving the article. Please try again");
+            throw new RuntimeException(e);
         }
         return article;
 
