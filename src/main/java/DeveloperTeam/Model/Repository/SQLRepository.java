@@ -1,10 +1,10 @@
 package DeveloperTeam.Model.Repository;
 
-import DeveloperTeam.Model.Entity.IArticle;
-import DeveloperTeam.Model.Entity.Ticket;
+import DeveloperTeam.Model.Entity.*;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SQLRepository implements Repository{
@@ -43,8 +43,22 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public List<IArticle> getAll() {
-        return null;
+    public List<IArticle> getAll() throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT * FROM STOCK");
+        List<IArticle> articles = new ArrayList<>();
+        while(rs.next()){
+
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String caract = rs.getString("caracteristic");
+            float price = rs.getFloat("price");
+            switch(rs.getString("class").toLowerCase()){
+                case "tree"-> articles.add(new Tree(id,name,caract,price));
+                case "decor"-> articles.add(new Decor(id,name,caract,price));
+                case "flower"-> articles.add(new Flower(id,name,caract,price));
+            }
+        }
+        return articles;
     }
 
     @Override
@@ -74,7 +88,7 @@ public class SQLRepository implements Repository{
         if(rs.next()){
             id = rs.getInt("id")+1;
         }
-        System.out.println("break");
+        rs.close();
         return id;
     }
 
@@ -82,8 +96,10 @@ public class SQLRepository implements Repository{
     public boolean exists(int idArticle) throws SQLException{
         ResultSet rs =stmt.executeQuery("SELECT id FROM stock ORDER BY id DESC LIMIT 1;");
         if(rs.next()){
+            rs.close();
             return true;
         }else{
+            rs.close();
             return false;
         }
     }
