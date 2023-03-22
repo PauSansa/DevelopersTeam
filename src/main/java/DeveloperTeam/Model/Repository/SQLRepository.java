@@ -79,8 +79,13 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public boolean exists(int idArticle) {
-        return false;
+    public boolean exists(int idArticle) throws SQLException{
+        ResultSet rs =stmt.executeQuery("SELECT id FROM stock ORDER BY id DESC LIMIT 1;");
+        if(rs.next()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
