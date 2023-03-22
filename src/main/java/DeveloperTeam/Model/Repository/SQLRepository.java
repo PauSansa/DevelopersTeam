@@ -62,7 +62,10 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public void removeStockItem(int idArticle) {
+    public void removeStockItem(int idArticle) throws SQLException{
+        //TODO en el service llamar antes de a data.remov.... a exists y si el id no existe no llamar a este metodo
+        String query = String.format("DELETE FROM stock WHERE id=%d;",idArticle);
+        stmt.execute(query);
 
     }
 
