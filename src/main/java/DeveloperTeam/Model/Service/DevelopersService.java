@@ -27,8 +27,7 @@ public class DevelopersService {
 
     public void createArticle(){
 
-        byte kind = AskParameter.askByte("What do you wanna add?\n1-tree\n2-flower\n3-decor");
-
+        byte kind = AskParameter.askByteRange("What do you wanna add?\n1-tree\n2-flower\n3-decor", 1, 3);
         IArticle article = factory.getArticle(kind);
 
         try{
@@ -36,14 +35,14 @@ public class DevelopersService {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public void removeArticle(){
         listAllArticles();
-        int askInteger= AskParameter.askInteger("Choose a option: ");
+        int askIdArticle= AskParameter.askInteger("Choose a option: ");
         try {
-            data.removeStockItem(askInteger);
+            if (data.exists(askIdArticle)){
+                data.removeStockItem(askIdArticle);}
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

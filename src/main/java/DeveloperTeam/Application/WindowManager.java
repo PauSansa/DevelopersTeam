@@ -22,7 +22,4 @@ public class WindowManager {
         return path;
     }
 
-
-
-
 }
