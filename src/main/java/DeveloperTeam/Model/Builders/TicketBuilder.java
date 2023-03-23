@@ -49,6 +49,9 @@ public class TicketBuilder {
 
     public void addItemT(){
 
+        //TODO Colocar aqui un if que compruebe si el item existe con data.exists() y depende de si existe o no, borrarlo o printear "El item ya existe"
+
+
         service.listAllArticles();
         int id = AskParameter.askInteger("Enter the id of the Article to add");
         
@@ -58,45 +61,14 @@ public class TicketBuilder {
         this.cTicket.getArticles().add(article);
 
 
-       // this code is to ask to the partner
-       if (this.cTicket.getArticles().size()!= 0 ){
-           int i = 0;
-           boolean verify= false;
-           while (i < this.cTicket.getArticles().size()  && !verify) {
-               if (this.cTicket.getArticles().get(i).getId()==id){
-                   verify=true;
-               }
-               i++;
-           }
-           if(!verify){
-               this.cTicket.getArticles().add(article);
-           }
-
-       }  //
-
     }
 
     public void deleteItemT(){
+        //TODO Colocar aqui un if que compruebe si el item existe con data.exists() y depende de si existe o no, borrarlo o printear "El item no existe"
         service.listAllArticles();
         int id = AskParameter.askInteger("Enter the id of the Article to add");
         IArticle article = service.getOne(id);
         this.cTicket.getArticles().remove(article);
-
-        // this code is to ask to the partner
-        if (this.cTicket.getArticles().size()!= 0 ){
-            int i = 0;
-            boolean verify= false;
-            while (i < this.cTicket.getArticles().size()  && !verify) {
-                if (this.cTicket.getArticles().get(i).getId()==id){
-                    verify=true;
-                }
-                i++;
-            }
-            if(!verify){
-                this.cTicket.getArticles().remove(article);
-            }
-
-        }  //
 
 
     }
