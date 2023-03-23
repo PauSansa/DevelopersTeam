@@ -108,7 +108,21 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public IArticle getOne(int idArticle){
-        return null;
+    public IArticle getOne(int idArticle) throws SQLException{
+        ResultSet rs = stmt.executeQuery(String.format("SELECT * FROM stock WHERE id = %d LIMIT 1",idArticle));
+        IArticle article = null;
+        if(rs.next()){
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String caract = rs.getString("caracteristic");
+            float price = rs.getFloat("price");
+            switch(rs.getString("class").toLowerCase()){
+                case "tree"-> article =(new Tree(id,name,caract,price));
+                case "decor"-> article =(new Decor(id,name,caract,price));
+                case "flower"-> article =(new Flower(id,name,caract,price));
+            }
+        }
+        return article;
+
     }
 }
