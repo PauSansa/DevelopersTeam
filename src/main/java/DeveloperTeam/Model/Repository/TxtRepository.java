@@ -173,14 +173,22 @@ public class TxtRepository implements Repository{
     @Override
     public int countStock() throws IOException{
         int id = 0;
-        try{
-            String last = "", line;
+        String[] tokens;
+        String last = "", line;
 
+        try{
             while ((line = stockReader.readLine()) != null) {
                 last = line;
             }
-            String[] tokens = last.replace("{","").replace("}","").split(",");
-            id = Integer.parseInt(tokens[1]) + 1;
+
+            if (last.equalsIgnoreCase("")){
+                id = 0;
+            }else{
+                tokens = last.replace("{","").replace("}","").split(",");
+                id = Integer.parseInt(tokens[1]) + 1;
+            }
+
+
         } catch (IOException e){
             e.printStackTrace();
         }finally {
