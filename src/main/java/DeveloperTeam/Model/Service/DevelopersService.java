@@ -27,8 +27,7 @@ public class DevelopersService {
 
     public void createArticle(){
 
-        byte kind = AskParameter.askByte("What do you wanna add?\n1-tree\n2-flower\n3-decor");
-
+        byte kind = AskParameter.askByteRange("What do you wanna add?\n1-tree\n2-flower\n3-decor", 1, 3);
         IArticle article = factory.getArticle(kind);
 
         try{
@@ -36,14 +35,14 @@ public class DevelopersService {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public void removeArticle(){
         listAllArticles();
-        int askInteger= AskParameter.askInteger("Choose a option: ");
+        int askIdArticle= AskParameter.askInteger("Choose a option: ");
         try {
-            data.removeStockItem(askInteger);
+            if (data.exists(askIdArticle)){
+                data.removeStockItem(askIdArticle);}
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -79,7 +78,6 @@ public class DevelopersService {
             else {
                 Map<? extends Class<?>, Long> classCount = articles.stream()
                         .collect(Collectors.groupingBy(Object::getClass, Collectors.counting()));
-
                 System.out.println("Available articles in Stock:");
 
                 classCount.forEach((key, value) -> System.out.println(key.getCanonicalName() + ": " + value));
@@ -93,7 +91,8 @@ public class DevelopersService {
         IArticle article = null;
         int askIdArticle= AskParameter.askInteger("Introduce the Id of the article: ");
         try {
-            article = data.getOne(askIdArticle);
+            if (data.exists(askIdArticle)){
+                article = data.getOne(askIdArticle);}
         } catch (Exception e) {
             System.out.println("Error retrieving the article. Please try again");
         }
@@ -103,7 +102,8 @@ public class DevelopersService {
     public IArticle getOne(int id){
         IArticle article = null;
         try {
-            article = data.getOne(id);
+            if (data.exists(id)){
+                article = data.getOne(id);}
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
