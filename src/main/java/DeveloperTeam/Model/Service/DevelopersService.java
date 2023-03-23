@@ -100,7 +100,6 @@ public class DevelopersService {
         return article;
     }
 
-    //Method Overcharge to use it in ticketBuilder
     public IArticle getOne(int id){
         IArticle article = null;
         try {
@@ -109,7 +108,6 @@ public class DevelopersService {
             throw new RuntimeException(e);
         }
         return article;
-
     }
 
     public void insertTicket(Ticket ticket){

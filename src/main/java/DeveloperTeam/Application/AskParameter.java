@@ -21,7 +21,6 @@ public class AskParameter {
             } catch(InputMismatchException e) {
                 System.out.println("Entered value isn't a Integer, please try again!");
             }
-
             myScannerObj.nextLine();
 
         } while(continua);
@@ -63,10 +62,8 @@ public class AskParameter {
 
         float outputParameter=0f;
         boolean continua=true;
-
         do{
             try{
-
                 System.out.println("\r"+message);
 
                 outputParameter = myScannerObj.nextFloat();
