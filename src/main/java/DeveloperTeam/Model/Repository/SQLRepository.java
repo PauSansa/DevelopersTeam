@@ -2,6 +2,7 @@ package DeveloperTeam.Model.Repository;
 
 import DeveloperTeam.Model.Entity.*;
 
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,8 +26,12 @@ public class SQLRepository implements Repository{
                 "caracteristic VARCHAR(30),\n" +
                 "price FLOAT\n" +
                 ");";
-        String initTicket = "";
+        String initTicket = "CREATE TABLE IF NOT EXISTS Ticket (\n" +
+                "  `line` VARCHAR(90) NOT NULL,\n" +
+                "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+                "  PRIMARY KEY (`id`));";
         stmt.execute(initStock);
+        stmt.execute(initTicket);
     }
 
     @Override
@@ -70,12 +75,42 @@ public class SQLRepository implements Repository{
     }
 
     @Override
-    public List<String> getAllTickets() {
-        return null;
+    public List<String> getAllTickets() throws SQLException{
+        List<String> lines = new ArrayList<>();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM TICKET");
+        while(rs.next()){
+            lines.add(rs.getString("line"));
+        }
+
+        return lines;
     }
 
     @Override
-    public void insertTicket(Ticket ticket){
+    public void insertTicket(Ticket ticket) throws SQLException{
+//        ticketWriter.println("{");
+//
+//        ticketWriter.println(ticket.getTicketID());
+//        ticketWriter.println(ticket.getNameClient());
+//        ticketWriter.println(ticket.getAddressClient());
+//        ticketWriter.println("12/04/2003");
+//        ticketWriter.println("####");
+//        for(IArticle art : ticket.getArticles()){
+//            ticketWriter.print(art.getId());
+//            ticketWriter.print(","+art.getName());
+//            ticketWriter.print(","+art.getCaracteristic());
+//            ticketWriter.println(","+art.getPrice()+"€");
+//        }
+//        ticketWriter.println("$$$$");
+//        ticketWriter.println(ticket.getTicketTotal()+"€");
+//        ticketWriter.println("}");
+
+        String query = "INSERT INTO ticket(line) VALUES(%s)";
+        stmt.execute(String.format(query,ticket.getTicketID()));
+        stmt.execute(String.format(query,ticket.getNameClient()));
+        stmt.execute(String.format(query,ticket.getAddressClient()));
+        stmt.execute(String.format(query,ticket.getTicketDate()));
+        stmt.execute(String.format(query,"####"));
+        //TODO acabar implementacion
 
     }
 

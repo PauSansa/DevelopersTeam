@@ -156,7 +156,7 @@ public class TxtRepository implements Repository{
         ticketWriter.println(ticket.getTicketID());
         ticketWriter.println(ticket.getNameClient());
         ticketWriter.println(ticket.getAddressClient());
-        ticketWriter.println("12/04/2003");
+        ticketWriter.println(ticket.getTicketDate());
         ticketWriter.println("####");
         for(IArticle art : ticket.getArticles()){
             ticketWriter.print(art.getId());

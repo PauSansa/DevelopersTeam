@@ -4,6 +4,7 @@ import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Repository {
@@ -17,7 +18,7 @@ public interface Repository {
 
     //Ticket
     List<String> getAllTickets() throws Exception;
-    void insertTicket(Ticket ticket);
+    void insertTicket(Ticket ticket) throws SQLException;
 
     float listTotalGains() throws Exception;
 

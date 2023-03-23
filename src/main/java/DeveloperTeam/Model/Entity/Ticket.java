@@ -50,8 +50,8 @@ public class Ticket {
         this.addressClient = addressClient;
     }
 
-    public LocalDateTime getTicketDate() {
-        return ticketDate;
+    public String getTicketDate() {
+        return ticketDate.toString();
     }
 
     public void setTicketDate(LocalDateTime ticketDate) {
