@@ -78,7 +78,6 @@ public class DevelopersService {
             else {
                 Map<? extends Class<?>, Long> classCount = articles.stream()
                         .collect(Collectors.groupingBy(Object::getClass, Collectors.counting()));
-
                 System.out.println("Available articles in Stock:");
 
                 classCount.forEach((key, value) -> System.out.println(key.getCanonicalName() + ": " + value));
@@ -92,7 +91,8 @@ public class DevelopersService {
         IArticle article = null;
         int askIdArticle= AskParameter.askInteger("Introduce the Id of the article: ");
         try {
-            article = data.getOne(askIdArticle);
+            if (data.exists(askIdArticle)){
+                article = data.getOne(askIdArticle);}
         } catch (Exception e) {
             System.out.println("Error retrieving the article. Please try again");
         }
@@ -102,7 +102,8 @@ public class DevelopersService {
     public IArticle getOne(int id){
         IArticle article = null;
         try {
-            article = data.getOne(id);
+            if (data.exists(id)){
+                article = data.getOne(id);}
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
