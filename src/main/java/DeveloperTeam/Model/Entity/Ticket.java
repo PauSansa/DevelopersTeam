@@ -89,4 +89,5 @@ public class Ticket {
                 ", IArticles=" + IArticles +
                 '}';
     }
+
 }//closes class
