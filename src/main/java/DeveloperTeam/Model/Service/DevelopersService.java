@@ -32,6 +32,7 @@ public class DevelopersService {
 
         try{
             data.addStockItem(article);
+            System.out.println("Article successfully added! ");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -42,8 +43,14 @@ public class DevelopersService {
         int askIdArticle= AskParameter.askInteger("Choose a option: ");
         try {
             if (data.exists(askIdArticle)){
-                data.removeStockItem(askIdArticle);}
+                data.removeStockItem(askIdArticle);
+                System.out.println("Article successfully removed! ");
+            }
+            else {
+                System.out.println("the article does not exist");
+            }
         } catch (Exception e) {
+
             throw new RuntimeException(e);
         }
     }
@@ -136,10 +143,13 @@ public class DevelopersService {
     public void listTotalGains(){
 
         try {
-            System.out.println("Total amount from all tickets: "+data.listTotalGains() +" €");
+            System.out.println("Total amount from all tickets: "+data.listTotalGains() + " €");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
     }
+
+
+
 }
