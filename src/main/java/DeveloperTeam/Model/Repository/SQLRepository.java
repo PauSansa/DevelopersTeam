@@ -1,8 +1,9 @@
 package DeveloperTeam.Model.Repository;
 
+import DeveloperTeam.Application.WindowManager;
+import DeveloperTeam.Exceptions.StoppedByUser;
 import DeveloperTeam.Model.Entity.*;
 
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,26 +13,41 @@ public class SQLRepository implements Repository{
     private Connection conn;
     private Statement stmt;
 
-    public SQLRepository() throws SQLException {
-        conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost/developer_team",
-                "root",
-                "root"
-        );
-        stmt = conn.createStatement();
-        String initStock = "CREATE TABLE IF NOT EXISTS stock(\n" +
-                "class VARCHAR(30),\n" +
-                "id INT,\n" +
-                "name VARCHAR(30),\n" +
-                "caracteristic VARCHAR(30),\n" +
-                "price FLOAT\n" +
-                ");";
-        String initTicket = "CREATE TABLE IF NOT EXISTS Ticket (\n" +
-                "  `line` VARCHAR(90) NOT NULL,\n" +
-                "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
-                "  PRIMARY KEY (`id`));";
-        stmt.execute(initStock);
-        stmt.execute(initTicket);
+    public SQLRepository() throws SQLException, StoppedByUser {
+        boolean done = false;
+        boolean cont = true;
+        while(!done && cont){
+            try{
+                String[] credentials = WindowManager.getSQLConnection();
+                conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost",
+                        credentials[0],
+                        credentials[1]
+                );
+                stmt = conn.createStatement();
+                stmt.execute("CREATE DATABASE IF NOT EXISTS developer_team");
+                stmt.execute("USE developer_team");
+                String initStock = "CREATE TABLE IF NOT EXISTS stock(\n" +
+                        "class VARCHAR(30),\n" +
+                        "id INT,\n" +
+                        "name VARCHAR(30),\n" +
+                        "caracteristic VARCHAR(30),\n" +
+                        "price FLOAT\n" +
+                        ");";
+                String initTicket = "CREATE TABLE IF NOT EXISTS Ticket (\n" +
+                        "  `line` VARCHAR(90) NOT NULL,\n" +
+                        "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+                        "  PRIMARY KEY (`id`));";
+                stmt.execute(initStock);
+                stmt.execute(initTicket);
+                done=true;
+            }catch (SQLException e){
+                if(!WindowManager.promptYesNo("The Conexion failed, do you wanna try again?")){
+                    throw new StoppedByUser("The app has been stopped by the user");
+                }
+            }
+        }
+
     }
 
     @Override
@@ -68,7 +84,6 @@ public class SQLRepository implements Repository{
 
     @Override
     public void removeStockItem(int idArticle) throws SQLException{
-        //TODO en el service llamar antes de a data.remov.... a exists y si el id no existe no llamar a este metodo
         String query = String.format("DELETE FROM stock WHERE id=%d;",idArticle);
         stmt.execute(query);
 
@@ -87,31 +102,23 @@ public class SQLRepository implements Repository{
 
     @Override
     public void insertTicket(Ticket ticket) throws SQLException{
-//        ticketWriter.println("{");
-//
-//        ticketWriter.println(ticket.getTicketID());
-//        ticketWriter.println(ticket.getNameClient());
-//        ticketWriter.println(ticket.getAddressClient());
-//        ticketWriter.println("12/04/2003");
-//        ticketWriter.println("####");
-//        for(IArticle art : ticket.getArticles()){
-//            ticketWriter.print(art.getId());
-//            ticketWriter.print(","+art.getName());
-//            ticketWriter.print(","+art.getCaracteristic());
-//            ticketWriter.println(","+art.getPrice()+"€");
-//        }
-//        ticketWriter.println("$$$$");
-//        ticketWriter.println(ticket.getTicketTotal()+"€");
-//        ticketWriter.println("}");
+        insertTicketLine(Integer.toString(ticket.getTicketID()));
+        insertTicketLine(ticket.getNameClient());
+        insertTicketLine(ticket.getAddressClient());
+        insertTicketLine(ticket.getTicketDate());
+        insertTicketLine("####");
+        for(IArticle art : ticket.getArticles()){
+            String article = String.join(", ", Integer.toString(art.getId()),art.getName(),art.getCaracteristic(),Float.toString(art.getPrice()));
+            insertTicketLine(article);
+        }
+        insertTicketLine("$$$$");
+        insertTicketLine(Float.toString(ticket.getTicketTotal()));
+        insertTicketLine("}");
+    }
 
+    public void insertTicketLine(String line) throws SQLException{
         String query = "INSERT INTO ticket(line) VALUES(%s)";
-        stmt.execute(String.format(query,ticket.getTicketID()));
-        stmt.execute(String.format(query,ticket.getNameClient()));
-        stmt.execute(String.format(query,ticket.getAddressClient()));
-        stmt.execute(String.format(query,ticket.getTicketDate()));
-        stmt.execute(String.format(query,"####"));
-        //TODO acabar implementacion
-
+        stmt.execute(String.format(query,line));
     }
 
     @Override
@@ -157,6 +164,7 @@ public class SQLRepository implements Repository{
                 case "flower"-> article =(new Flower(id,name,caract,price));
             }
         }
+        rs.close();
         return article;
 
     }

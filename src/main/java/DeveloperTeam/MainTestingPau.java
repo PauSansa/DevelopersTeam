@@ -19,15 +19,6 @@ import java.util.List;
 
 public class MainTestingPau {
     public static void main(String[] args) {
-//        Repository repo = new TxtRepository();
-//        List<IArticle> articles = null;
-//        try{
-//            articles = repo.getAll();
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        System.out.println("Break");
-
         App app =new App();
         app.init();
     }

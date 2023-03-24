@@ -1,5 +1,6 @@
 package DeveloperTeam.Application;
 
+import DeveloperTeam.Exceptions.StoppedByUser;
 import DeveloperTeam.Model.Builders.TicketBuilder;
 import DeveloperTeam.Model.Entity.FlowerShop;
 import DeveloperTeam.Model.Repository.MongoRepository;
@@ -9,6 +10,7 @@ import DeveloperTeam.Model.Repository.TxtRepository;
 import DeveloperTeam.Model.Service.DevelopersService;
 
 import java.security.Provider;
+import java.sql.SQLException;
 
 public class App {
     FlowerShop flowerShop;
@@ -35,7 +37,7 @@ public class App {
                 case 2 -> repo = new MongoRepository();
             }
         }catch(Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
 
