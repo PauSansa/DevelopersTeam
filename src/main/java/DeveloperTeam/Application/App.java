@@ -67,7 +67,8 @@ public class App {
         }
     }
     public byte getOptMain(){
-        System.out.println(" #·#·# MAIN MENU #·#·# ");
+
+        System.out.println("\n #·#·# MAIN MENU #·#·# ");
         System.out.println("1.-Add Item");
         System.out.println("2.-Delete Item");
         System.out.println("3.-List All");

@@ -57,20 +57,29 @@ public class TicketBuilder {
         
         IArticle article = service.getOne(id);
 
-        this.cTicket.getArticles().add(article);
-        this.cTicket.getArticles().add(article);
+        if (article != null) {
+            this.cTicket.getArticles().add(article);
+            System.out.println("Article successfully added! ");
 
+        }
+        else {
+            System.out.println("Article does not exist");
+        }
 
     }
 
     public void deleteItemT(){
         //TODO Colocar aqui un if que compruebe si el item existe con data.exists() y depende de si existe o no, borrarlo o printear "El item no existe"
         service.listAllArticles();
-        int id = AskParameter.askInteger("Enter the id of the Article to add");
+        int id = AskParameter.askInteger("Enter the id of the Article to delete");
         IArticle article = service.getOne(id);
-        this.cTicket.getArticles().remove(article);
 
-
+        if (article == null){
+            System.out.println("Article does not exist");
+            } else {
+            this.cTicket.getArticles().remove(article);
+            System.out.println("Article removed successfully!");
+                }
     }
 
     public void listCurrentTicket(){
