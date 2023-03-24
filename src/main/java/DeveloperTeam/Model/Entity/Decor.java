@@ -2,6 +2,8 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
+import java.util.Objects;
+
 public class Decor implements IArticle {
 
     private int id;
@@ -75,5 +77,18 @@ public class Decor implements IArticle {
                 ", material='" + material + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Decor decor = (Decor) o;
+        return id == decor.id && Float.compare(decor.price, price) == 0 && name.equals(decor.name) && material.equals(decor.material);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, material, price);
     }
 }

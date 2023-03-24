@@ -2,6 +2,8 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
+import java.util.Objects;
+
 public class Tree implements IArticle {
 
     private int id;
@@ -75,5 +77,18 @@ public class Tree implements IArticle {
                 ", height=" + height +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tree tree = (Tree) o;
+        return id == tree.id && Float.compare(tree.price, price) == 0 && name.equals(tree.name) && height.equals(tree.height);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, height, price);
     }
 }

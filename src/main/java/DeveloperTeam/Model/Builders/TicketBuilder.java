@@ -5,6 +5,9 @@ import DeveloperTeam.Model.Entity.IArticle;
 import DeveloperTeam.Model.Entity.Ticket;
 import DeveloperTeam.Model.Service.DevelopersService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicketBuilder {
     DevelopersService service;
     Ticket cTicket;
@@ -70,14 +73,16 @@ public class TicketBuilder {
 
     public void deleteItemT(){
         //TODO Colocar aqui un if que compruebe si el item existe con data.exists() y depende de si existe o no, borrarlo o printear "El item no existe"
-        service.listAllArticles();
+        this.cTicket.getArticles().forEach(System.out::println);
         int id = AskParameter.askInteger("Enter the id of the Article to delete");
         IArticle article = service.getOne(id);
 
         if (article == null){
             System.out.println("Article does not exist");
             } else {
-            this.cTicket.getArticles().remove(article);
+            ArrayList<IArticle> newList = this.cTicket.getArticles();
+            newList.remove(article);
+            this.cTicket.setArticles(newList);
             System.out.println("Article removed successfully!");
                 }
     }

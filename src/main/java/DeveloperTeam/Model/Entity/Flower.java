@@ -2,6 +2,8 @@ package DeveloperTeam.Model.Entity;
 
 import DeveloperTeam.Application.AskParameter;
 
+import java.util.Objects;
+
 public class Flower implements IArticle {
 
     private int id;
@@ -74,5 +76,18 @@ public class Flower implements IArticle {
                 ", colour='" + colour + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flower flower = (Flower) o;
+        return id == flower.id && Float.compare(flower.price, price) == 0 && name.equals(flower.name) && colour.equals(flower.colour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, colour, price);
     }
 }
