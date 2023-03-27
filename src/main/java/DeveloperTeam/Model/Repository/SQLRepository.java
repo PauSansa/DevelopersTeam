@@ -102,6 +102,7 @@ public class SQLRepository implements Repository{
 
     @Override
     public void insertTicket(Ticket ticket) throws SQLException{
+        insertTicketLine("{");
         insertTicketLine(Integer.toString(ticket.getTicketID()));
         insertTicketLine(ticket.getNameClient());
         insertTicketLine(ticket.getAddressClient());
@@ -117,13 +118,21 @@ public class SQLRepository implements Repository{
     }
 
     public void insertTicketLine(String line) throws SQLException{
-        String query = "INSERT INTO ticket(line) VALUES(%s)";
+        String query = "INSERT INTO ticket(line) VALUES('%s')";
         stmt.execute(String.format(query,line));
     }
 
     @Override
-    public float listTotalGains() throws IOException {
-        return 0;
+    public float listTotalGains() throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT line FROM ticket ORDER BY id ASC");
+        float result = 0f;
+        while(rs.next()){
+            if(rs.getString("line").equals("$$$$")){
+                rs.next();
+                result += Float.parseFloat(rs.getString("line"));
+            }
+        }
+        return result;
     }
 
     @Override
